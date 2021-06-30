@@ -1,3 +1,3 @@
-const functionTest = (a, b) => {
+export const functionTest = (a, b) => {
     return a + b
 }
