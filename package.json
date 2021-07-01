@@ -4,7 +4,8 @@
   "description": "",
   "main": "./src/index.js",
   "files": [
-    "src/*"
+    "src",
+    "src/validator"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
