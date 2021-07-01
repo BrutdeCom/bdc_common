@@ -1,7 +1,5 @@
-const functionTest = (a, b) => {
-    return a + b
-}
+const Validator = require('./validator')
 
 module.exports = {
-    functionTest
+    Validator
 }
