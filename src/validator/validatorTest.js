@@ -1,5 +1,5 @@
-const functionTest = (a, b) => {
+const validatorTest = (a, b) => {
     return a + b
 }
 
-module.exports = functionTest
+module.exports = validatorTest
