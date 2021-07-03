@@ -1,5 +1,5 @@
-const validatorTest = require('./validatorTest')
+const isValidString = require('./isValidString')
 
 module.exports = {
-    validatorTest
+    isValidString
 }
