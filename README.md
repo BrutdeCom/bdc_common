@@ -58,6 +58,6 @@ const myConst = Validator.isValidString('string')
 ```
 
 | Name       |     Description     | Parameters | return |
-| :------------    | :-------------: | :-------------: |
+| :------------    | :-------------: | :-------------: | :-------------: |
 | `isValidString('string')`    | Verify if value is valid string | `String` parameters ('one string') | Return `true` or `false` |
 | `isValidEmail('email@test.com')`  | Verify if email is valid format | `String` parameters ('email@test.com') | Return `true` or `false`  |
