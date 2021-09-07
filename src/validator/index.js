@@ -8,6 +8,7 @@ const { isValidPhone } = require('./isValidPhone')
 const { isValidLastname } = require('./isValidLastname')
 const { isValidFirstname } = require('./isValidFirstname')
 const { isValidPassword } = require('./isValidPassword')
+const { isValidSiret } = require('./isValidSiret')
 
 module.exports = {
     isValidString,
@@ -19,5 +20,6 @@ module.exports = {
     isValidPhone,
     isValidLastname,
     isValidFirstname,
-    isValidPassword
+    isValidPassword,
+    isValidSiret
 }

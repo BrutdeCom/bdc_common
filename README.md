@@ -55,6 +55,9 @@ const { Validator } = require('@brutdecom/bdc_common')
 // Use isValidString for example
 const myConst = Validator.isValidString('string')
 // return true
+
+const myConst = Validator.isValidString(14)
+// return false
 ```
 
 | Name       |     Description     | Parameters | return |
