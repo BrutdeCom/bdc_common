@@ -104,7 +104,7 @@ import { InputValidator, FormValidator } from '@brutdecom/bdc_common'
 // mergedYupSchemas is utils function for grouped multiple validator in schema object, is required
 const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, InputValidator.password)
 
-// After, just passed validationSchema in ManagedForm (BDC project)
+// After, just passed validationSchema in ManagedForm (for BDC project)
 
 <ManagedForm
   validationSchema={validationSchema}
