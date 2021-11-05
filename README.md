@@ -4,6 +4,8 @@ CONTENTS OF THIS PACKAGE
  * Introduction
  * Installation
  * Regex
+ * Validator
+ * YUP Validator for Formik (InputValidator)
 
 # Introduction
 
@@ -31,6 +33,10 @@ Example for use Regex with this package :
 // Require Regex part of this package
 const { Regex } = require('@brutdecom/bdc_common')
 
+// or
+
+import { Regex } from '@brutdecom/bdc_common'
+
 // Use password regex
 const myConst = Regex.password
 // return regex
@@ -52,6 +58,10 @@ Example for use Validator with this package :
 // Require Validator part of this package
 const { Validator } = require('@brutdecom/bdc_common')
 
+// or
+
+import { Validator } from '@brutdecom/bdc_common'
+
 // Use isValidString for example
 const myConst = Validator.isValidString('string')
 // return true
@@ -72,3 +82,68 @@ const myConst = Validator.isValidString(14)
 | `isValidLastname('Lastname')`    | Verify if value is valid lastname format. | `String` parameters ('Lastname') | Return `true` or `false` |
 | `isValidFirstname('Firstname')`    | Verify if value is valid Firstname format. | `String` parameters ('Firstname') | Return `true` or `false` |
 | `isValidPassword('password')`    | Verify if value is valid password format (16 characters, 1 lowercase, 1 uppercase, 1 special character). | `String` parameters ('password') | Return `true` or `false` |
+| `isValidSiret('string')`    | Verify if value is valid siret | `String` siret parameters ('12345678998765') | Return `true` or `false` |
+
+# YUP Validator for Formik (InputValidator)
+
+InputValidator part is utils for validate data in Formik form (validationSchemas parameter).
+Validate data, and display matches error in frontend (based on YUP package)
+
+Example for use InputValidator with this package :
+
+```js
+// Require InputValidator part of this package
+const { InputValidator, FormValidator } = require('@brutdecom/bdc_common')
+
+// or
+
+import { InputValidator, FormValidator } from '@brutdecom/bdc_common'
+
+// My form contain two fields, "email" and "password" for auth. I want validate field data, use InputValidator with FormValidator.mergedYupSchemas
+// This variable contain my validationSchema object
+// mergedYupSchemas is utils function for grouped multiple validator in schema object, is required
+const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, InputValidator.password)
+
+// After, just passed validationSchema in ManagedForm (BDC project)
+
+<ManagedForm
+  validationSchema={validationSchema}
+  // .. and others props
+/>
+
+// or with formik props
+<Formik
+  onSubmit={onSubmit}
+  initialValues={initialValues}
+  validationSchema={validationSchema}
+>{({
+  values,
+  handleChange,
+  handleSubmit,
+  errors,
+}) => (
+  ......
+```
+
+| Name       |     Description     | 
+| :------------    | :-------------: |
+| `InputValidator.email`    | Verify if value is valid email |
+| `InputValidator.password`    | Verify if value is valid password |
+| `InputValidator.firstname`    | Firstname field validation |
+| `InputValidator.lastname`    | Lastname field validation |
+| `InputValidator.passwordConfirm`    | passwordConfirm field validation, for verify identical password in form |
+| `InputValidator.city`    | City field validation |
+| `InputValidator.zipCode`    | zipCode field validation |
+| `InputValidator.address`    | address field validation |
+| `InputValidator.phone`    | Phone field validation |
+| `InputValidator.fax`    | Fax field validation |
+| `InputValidator.country`    | Country field validation |
+| `InputValidator.company`    | Company field validation |
+| `InputValidator.role`    | Role field validation |
+| `InputValidator.accommodation`    | Accommodation field validation |
+| `InputValidator.userType`    | userType field validation |
+| `InputValidator.socialReason`    | enterprise socialReason field validation |
+| `InputValidator.siret`    | siret field validation |
+| `InputValidator.capeb`    | capeb field validation |
+| `InputValidator.activityType`    | activityType field validation |
+| `InputValidator.accommodationName`    | accommodationName field validation |
