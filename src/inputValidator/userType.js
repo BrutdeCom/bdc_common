@@ -1,6 +1,6 @@
 const Yup = require('yup')
 
-const userTypeValidation = Yup.object({
+const userType = Yup.object({
   userType: Yup.string().required('Ce champ est requis.'),
 })
 
