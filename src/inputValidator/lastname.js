@@ -1,6 +1,6 @@
 const Yup = require('yup')
 
-export const lastname = Yup.object({
+const lastname = Yup.object({
     lastname: Yup.string('Votre nom doit être une chaine de caractères.').min(2, 'Votre nom est trop court !').required('Votre nom est requis.'),
 })
 
