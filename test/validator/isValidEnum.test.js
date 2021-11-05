@@ -5,25 +5,7 @@ const expect = require('chai').expect
 
 describe('src/utils', function () {
   describe('isValidEnum', function () {
-    it('String items in array - Return true', function () {
-      const enumTest = ['one', 'two', 'three', 'four']
-      expect(isValidEnum('one', enumTest)).equal(true)
-      expect(isValidEnum('two', enumTest)).equal(true)
-      expect(isValidEnum('three', enumTest)).equal(true)
-      expect(isValidEnum('four', enumTest)).equal(true)
-    })
-
-    it('String items in array - Return false', function () {
-      const enumTest = ['five', 'six', 'seven', 'eight']
-      expect(isValidEnum('one', enumTest)).equal(false)
-      expect(isValidEnum('two', enumTest)).equal(false)
-      expect(isValidEnum('three', enumTest)).equal(false)
-      expect(isValidEnum('four', enumTest)).equal(false)
-      expect(isValidEnum('', ['test'])).equal(false)
-      expect(isValidEnum('test', [])).equal(false)
-    })
-
-    it('Object items in array - Return true', function () {
+    it('Return true', function () {
         const enumTest = [
             {
                 value: 'one',
@@ -46,7 +28,33 @@ describe('src/utils', function () {
         expect(isValidEnum('two', enumTest)).equal(true)
         expect(isValidEnum('three', enumTest)).equal(true)
         expect(isValidEnum('four', enumTest)).equal(true)
-      })
+    })
+
+    it('Return false', function () {
+        const enumTest = [
+            {
+                value: 'one',
+                text: 'one'
+            },
+            {
+                value: 'two',
+                text: 'two'
+            },
+            {
+                value: 'three',
+                text: 'three'
+            },
+            {
+                value: 'four',
+                text: 'four'
+            }
+        ]
+
+        expect(isValidEnum('five', enumTest)).equal(false)
+        expect(isValidEnum('six', enumTest)).equal(false)
+        expect(isValidEnum('seven', enumTest)).equal(false)
+        expect(isValidEnum('eight', enumTest)).equal(false)
+    })
 
     it('Return error is not a string', function () {
       const enumTest = ['five', 'six', 'seven', 'eight']
@@ -62,9 +70,9 @@ describe('src/utils', function () {
     })
 
     it('Return null', function () {
-      expect(isValidEnum(null, null)).equal(null)
-      expect(isValidEnum('test', null)).equal(null)
-      expect(isValidEnum(null, ['test'])).equal(null)
+      expect(isValidEnum(null, null)).equal(false)
+      expect(isValidEnum('test', null)).equal(false)
+      expect(isValidEnum(null, ['test'])).equal(false)
     })
   })
 })

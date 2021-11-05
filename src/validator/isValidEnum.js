@@ -3,7 +3,7 @@ const _ = require('lodash')
 const isValidEnum = (value, payloadEnum) => {
   try {
     if(_.isNil(value) || _.isNil(payloadEnum)) {
-      return null
+      return false
     }
   
     if(!_.isString(value)) {
@@ -13,20 +13,19 @@ const isValidEnum = (value, payloadEnum) => {
     if(!_.isArray(payloadEnum)) {
       throw new Error('Enum is not an array')
     }
-
-    if(_.isPlainObject(_.head(payloadEnum))) {
-      _.map(payloadEnum, Enum => {
-        if (_.get(Enum, 'value') === value) {
-          return true
-        }
-      })
-    } else if (_.isString(_.head(payloadEnum))) {
-        if(_.includes(payloadEnum, value)) {
-          return true
-        }
-    }
     
-    return false
+    let validate = []
+    validate = _.filter(payloadEnum, Enum => {
+      const enumValue = _.get(Enum, 'value')
+
+      return _.isEqual(enumValue, value)
+    })
+
+    if(_.size(validate) <= 0) {
+      return false
+    } else {
+      return true
+    }
   } catch (error) {
     throw error
   }
