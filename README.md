@@ -83,6 +83,7 @@ const myConst = Validator.isValidString(14)
 | `isValidFirstname('Firstname')`    | Verify if value is valid Firstname format. | `String` parameters ('Firstname') | Return `true` or `false` |
 | `isValidPassword('password')`    | Verify if value is valid password format (16 characters, 1 lowercase, 1 uppercase, 1 special character). | `String` parameters ('password') | Return `true` or `false` |
 | `isValidSiret('string')`    | Verify if value is valid siret | `String` siret parameters ('12345678998765') | Return `true` or `false` |
+| `isValidEnum('string', array)`    | Verify if value is valid enumeration | `String` value parameters ('test'), `array` parameters (Enum.MyEnum) | Return `true` or `false` |
 
 # YUP Validator for Formik (InputValidator)
 
