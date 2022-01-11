@@ -1,4 +1,4 @@
-const UserType = [
+const UserTypeEnum = [
     {
       value: 'test-1',
       title: 'Test 1'
@@ -9,9 +9,9 @@ const UserType = [
     }
   ]
   
-//   const TestType = () => {
-//     return TestTypeEnum
-//   }
+  const UserType = () => {
+    return UserTypeEnum
+  }
   
   module.exports = {
     UserType

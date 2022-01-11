@@ -1,5 +1,5 @@
-const TestType = require('./TestType')
-const UserType = require('./UserType')
+const { TestType } = require('./TestType')
+const { UserType } = require('./UserType')
 
 module.exports = {
   TestType,
