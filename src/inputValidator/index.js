@@ -20,8 +20,10 @@ const { activityType } = require('./activityType')
 const { accommodationName } = require('./accommodationName')
 const { birthdate } = require('./birthdate')
 const { birthCountry } = require('./birthCountry')
+const { birthCounty } = require('./birthCounty')
 
 module.exports = {
+  birthCounty,
   birthCountry,
   birthdate,
   email,
