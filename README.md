@@ -148,3 +148,4 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.capeb`    | capeb field validation |
 | `InputValidator.activityType`    | activityType field validation |
 | `InputValidator.accommodationName`    | accommodationName field validation |
+| `InputValidator.birthdate`    | birthdate field validation |
