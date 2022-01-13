@@ -19,10 +19,10 @@ const { capeb } = require('./capeb')
 const { activityType } = require('./activityType')
 const { accommodationName } = require('./accommodationName')
 const { birthdate } = require('./birthdate')
-const { select } = require('./select')
+const { birthCountry } = require('./birthCountry')
 
 module.exports = {
-  select,
+  birthCountry,
   birthdate,
   email,
   password,
