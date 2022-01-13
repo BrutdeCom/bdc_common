@@ -151,3 +151,4 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.birthdate`    | birthdate field validation |
 | `InputValidator.birthCountry`    | birthCountry field validation |
 | `InputValidator.birthCounty`    | birthCounty field validation |
+| `InputValidator.birthCity`    | birthCity field validation |

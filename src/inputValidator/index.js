@@ -21,8 +21,10 @@ const { accommodationName } = require('./accommodationName')
 const { birthdate } = require('./birthdate')
 const { birthCountry } = require('./birthCountry')
 const { birthCounty } = require('./birthCounty')
+const { birthCity } = require('./birthCity')
 
 module.exports = {
+  birthCity,
   birthCounty,
   birthCountry,
   birthdate,
