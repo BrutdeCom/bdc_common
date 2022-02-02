@@ -105,24 +105,16 @@ import { InputValidator, FormValidator } from '@brutdecom/bdc_common'
 // mergedYupSchemas is utils function for grouped multiple validator in schema object, is required
 const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, InputValidator.password)
 
-// After, just passed validationSchema in ManagedForm (for BDC project)
+// After, just passed validationSchema in Form
 
-<ManagedForm
-  validationSchema={validationSchema}
-  // .. and others props
-/>
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: validationSchema,
+    onSubmit: values => {
+      action(values)
+    }
+  })
 
-// or with formik props
-<Formik
-  onSubmit={onSubmit}
-  initialValues={initialValues}
-  validationSchema={validationSchema}
->{({
-  values,
-  handleChange,
-  handleSubmit,
-  errors,
-}) => (
   ......
 ```
 
@@ -152,3 +144,17 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.birthCountry`    | birthCountry field validation |
 | `InputValidator.birthCounty`    | birthCounty field validation |
 | `InputValidator.birthCity`    | birthCity field validation |
+
+### For My Home Project (but it is possible to use it elsewhere)
+
+| Name       |     Description     | 
+| :------------    | :-------------: |
+| `InputValidator.question`    | question field validation |
+| `InputValidator.questionCategory`    | questionCategory field validation |
+| `InputValidator.questionIntroSubTheme`    | questionIntroSubTheme field validation |
+| `InputValidator.questionIntroTheme`    | questionIntroTheme field validation |
+| `InputValidator.questionSubTheme`    | questionSubTheme field validation |
+| `InputValidator.questionTheme`    | questionTheme field validation |
+| `InputValidator.questionType`    | questionType field validation |
+| `InputValidator.questionUnvalidate`    | questionUnvalidate field validation |
+| `InputValidator.questionValidate`    | questionValidate field validation |

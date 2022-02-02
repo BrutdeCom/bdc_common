@@ -22,8 +22,26 @@ const { birthdate } = require('./birthdate')
 const { birthCountry } = require('./birthCountry')
 const { birthCounty } = require('./birthCounty')
 const { birthCity } = require('./birthCity')
+const { questionCategory } = require('./questionCategory')
+const { questionTheme } = require('./questionTheme')
+const { questionIntroTheme } = require('./questionIntroTheme')
+const { questionSubTheme } = require('./questionSubTheme')
+const { questionIntroSubTheme } = require('./questionIntroSubTheme')
+const { questionType } = require('./questionType')
+const { questionValidate } = require('./questionValidate')
+const { questionUnvalidate } = require('./questionUnvalidate')
+const { question} = require('./question')
 
 module.exports = {
+  question,
+  questionUnvalidate,
+  questionValidate,
+  questionType,
+  questionIntroSubTheme,
+  questionSubTheme,
+  questionIntroTheme,
+  questionTheme,
+  questionCategory,
   birthCity,
   birthCounty,
   birthCountry,

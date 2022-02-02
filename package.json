@@ -8,18 +8,20 @@
   ],
   "scripts": {
     "test": "npm run test:mocha",
-    "test:mocha": "mocha --parallel './test/*/*'"
+    "test:mocha": "mocha --parallel './test/*/*'",
+    "test:check": "npm-check -u"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.3.4",
-    "jsdoc": "^3.6.7",
+    "chai": "^4.3.6",
+    "jsdoc": "^3.6.10",
     "lodash": "^4.17.21",
-    "mocha": "^9.0.2",
+    "mocha": "^9.2.0",
     "moment": "^2.29.1",
-    "validator": "^13.6.0",
-    "yup": "^0.32.9"
+    "npm-check": "^5.9.2",
+    "validator": "^13.7.0",
+    "yup": "^0.32.11"
   }
 }
