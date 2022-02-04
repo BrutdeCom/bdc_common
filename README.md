@@ -150,11 +150,11 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | Name       |     Description     | 
 | :------------    | :-------------: |
 | `InputValidator.question`    | question field validation |
-| `InputValidator.questionCategory`    | questionCategory field validation |
-| `InputValidator.questionIntroSubTheme`    | questionIntroSubTheme field validation |
-| `InputValidator.questionIntroTheme`    | questionIntroTheme field validation |
-| `InputValidator.questionSubTheme`    | questionSubTheme field validation |
-| `InputValidator.questionTheme`    | questionTheme field validation |
-| `InputValidator.questionType`    | questionType field validation |
-| `InputValidator.questionUnvalidate`    | questionUnvalidate field validation |
-| `InputValidator.questionValidate`    | questionValidate field validation |
+| `InputValidator.category`    | category field validation |
+| `InputValidator.introSubTheme`    | introSubTheme field validation |
+| `InputValidator.introTheme`    | introTheme field validation |
+| `InputValidator.subTheme`    | subTheme field validation |
+| `InputValidator.theme`    | theme field validation |
+| `InputValidator.type`    | type field validation |
+| `InputValidator.answerUnvalidateText`    | answerUnvalidateText field validation |
+| `InputValidator.answerValidateText`    | answerValidateText field validation |

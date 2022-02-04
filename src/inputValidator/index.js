@@ -22,26 +22,26 @@ const { birthdate } = require('./birthdate')
 const { birthCountry } = require('./birthCountry')
 const { birthCounty } = require('./birthCounty')
 const { birthCity } = require('./birthCity')
-const { questionCategory } = require('./questionCategory')
-const { questionTheme } = require('./questionTheme')
-const { questionIntroTheme } = require('./questionIntroTheme')
-const { questionSubTheme } = require('./questionSubTheme')
-const { questionIntroSubTheme } = require('./questionIntroSubTheme')
-const { questionType } = require('./questionType')
-const { questionValidate } = require('./questionValidate')
-const { questionUnvalidate } = require('./questionUnvalidate')
-const { question} = require('./question')
+const { category } = require('./category')
+const { theme } = require('./theme')
+const { introTheme } = require('./introTheme')
+const { subTheme } = require('./subTheme')
+const { introSubTheme } = require('./introSubTheme')
+const { type } = require('./type')
+const { answerValidateText } = require('./answerValidateText')
+const { answerUnvalidateText } = require('./answerUnvalidateText')
+const { question } = require('./question')
 
 module.exports = {
   question,
-  questionUnvalidate,
-  questionValidate,
-  questionType,
-  questionIntroSubTheme,
-  questionSubTheme,
-  questionIntroTheme,
-  questionTheme,
-  questionCategory,
+  answerUnvalidateText,
+  answerValidateText,
+  type,
+  introSubTheme,
+  subTheme,
+  introTheme,
+  theme,
+  category,
   birthCity,
   birthCounty,
   birthCountry,
