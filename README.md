@@ -158,3 +158,25 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.type`    | type field validation |
 | `InputValidator.answerUnvalidateText`    | answerUnvalidateText field validation |
 | `InputValidator.answerValidateText`    | answerValidateText field validation |
+
+# Utils
+
+Example for use Utils with this package :
+
+```js
+// Require Utils part of this package
+const { Utils } = require('@brutdecom/bdc_common')
+
+// or
+
+import { Utils } from '@brutdecom/bdc_common'
+
+// Use utils function
+const myConst = Utils.myUtilsFunction()
+// return ...
+```
+
+| Name       |     Description     | Parameters | return |
+| :------------    | :-------------: | :-------------: | :-------------: |
+| `getEnumValues(enum)`    | Get values of the enum | Enum parameters (Enum.MyEnumType) | Return an array with enum values |
+| `getEnumSubTypeValues(enum, key)`  | Get values of the sub type in enum | Enum parameters (Enum.MyEnumType), `String` with sub type key | Return an array with enum sub type values  |
