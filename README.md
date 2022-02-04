@@ -178,5 +178,14 @@ const myConst = Utils.myUtilsFunction()
 
 | Name       |     Description     | Parameters | return |
 | :------------    | :-------------: | :-------------: | :-------------: |
+| `validateStringRequestItems(body)`    | Get if all values in request body is string | req.body parameters (object) | Return true if is ok, else return false |
+
+
+## Enum Part
+
+| Name       |     Description     | Parameters | return |
+| :------------    | :-------------: | :-------------: | :-------------: |
 | `getEnumValues(enum)`    | Get values of the enum | Enum parameters (Enum.MyEnumType) | Return an array with enum values |
 | `getEnumSubTypeValues(enum, key)`  | Get values of the sub type in enum | Enum parameters (Enum.MyEnumType), `String` with sub type key | Return an array with enum sub type values  |
+
+
