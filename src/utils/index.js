@@ -1,5 +1,6 @@
-const { getEnumValues } = require('./enum')
+const { getEnumValues, getEnumSubTypeValues } = require('./enum')
 
 module.exports = {
-  getEnumValues
+  getEnumValues,
+  getEnumSubTypeValues
 }
