@@ -44,7 +44,7 @@ const myConst = Regex.password
 
 | Regex Type       |     Description     |
 | :------------    | :-------------: |
-| password         | 16 characters, 1 lowercase, 1 uppercase, 1 special character |
+| password         | 8 characters, 1 lowercase, 1 uppercase, 1 special character, 1 number |
 | phone            | Phone and fax number   |
 | city             | City (2 characters minimum, not number)    |
 | zip              | French zip code (5 numbers) |
@@ -81,7 +81,7 @@ const myConst = Validator.isValidString(14)
 | `isValidPhone('0625458769')`    | Verify if value is valid phone and fax number format. | `String` parameters ('0625458769') | Return `true` or `false` |
 | `isValidLastname('Lastname')`    | Verify if value is valid lastname format. | `String` parameters ('Lastname') | Return `true` or `false` |
 | `isValidFirstname('Firstname')`    | Verify if value is valid Firstname format. | `String` parameters ('Firstname') | Return `true` or `false` |
-| `isValidPassword('password')`    | Verify if value is valid password format (16 characters, 1 lowercase, 1 uppercase, 1 special character). | `String` parameters ('password') | Return `true` or `false` |
+| `isValidPassword('password')`    | Verify if value is valid password format (8 characters, 1 lowercase, 1 uppercase, 1 special character, 1 number). | `String` parameters ('password') | Return `true` or `false` |
 | `isValidSiret('string')`    | Verify if value is valid siret | `String` siret parameters ('12345678998765') | Return `true` or `false` |
 | `isValidEnum('string', array)`    | Verify if value is valid enumeration | `String` value parameters ('test'), `array` parameters (Enum.MyEnum) | Return `true` or `false` |
 

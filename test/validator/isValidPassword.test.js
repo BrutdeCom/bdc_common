@@ -3,7 +3,7 @@ const { isValidPassword } = require('../../src/validator/isValidPassword')
 const expect = require('chai').expect
 
 describe('isValidPassword', function () {
-    const password = 'Password123456789*'
+    const password = '1Password*'
 
     it('should be a function', function () {
       expect(isValidPassword).to.be.a('function')
@@ -23,7 +23,8 @@ describe('isValidPassword', function () {
 
     it('should be return a false value', function () {
       expect(isValidPassword('test')).be.equal(false)
-      expect(isValidPassword('Password78546*')).be.equal(false)
+      expect(isValidPassword('Password7')).be.equal(false)
+      expect(isValidPassword('Password*')).be.equal(false)
       expect(isValidPassword('')).be.equal(false)
       expect(isValidPassword()).be.equal(false)
       expect(isValidPassword(null)).be.equal(false)
