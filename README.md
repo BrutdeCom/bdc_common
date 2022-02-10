@@ -187,5 +187,6 @@ const myConst = Utils.myUtilsFunction()
 | :------------    | :-------------: | :-------------: | :-------------: |
 | `getEnumValues(enum)`    | Get values of the enum | Enum parameters (Enum.MyEnumType) | Return an array with enum values |
 | `getEnumSubTypeValues(enum, key)`  | Get values of the sub type in enum | Enum parameters (Enum.MyEnumType), `String` with sub type key | Return an array with enum sub type values  |
+| `getEnumSubTypes(enum)`  | Get sub type objects in enum | Enum parameters (Enum.MyEnumType) | Return an array with enum sub type objects |
 
 

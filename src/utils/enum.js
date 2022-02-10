@@ -67,7 +67,46 @@ const _ = require('lodash')
     }
   }
 
+ /**
+ * Return an array, contain enum sub type objects.
+ * @param {string} payloadEnum - Contain enum.
+ * @returns {array} Return an array, contain enum sub type objects.
+ */
+
+ // ADD PARENT PARAMETER
+  const getEnumSubTypes = (payloadEnum, key) => {
+    try {
+      if (!_.isArray(payloadEnum)) {
+        throw new Error('The payloadEnum parameter must be an array.')
+      }
+  
+      if (_.size(payloadEnum) < 1) {
+        throw new Error('The payloadEnum parameter must be an array with at least one element.')
+      }
+
+      if (_.isNil(key) || !_.isString(key)) {
+        throw new Error('The key parameter must be a string.')
+      }
+
+      let enumSubTypes = []
+      
+      _.map(payloadEnum, item => {
+        const subTypes = _.get(item, key)
+
+        _.map(subTypes, subItem => {
+          enumSubTypes.push(subItem)
+        })
+      })
+
+      return enumSubTypes
+
+    } catch (error) {
+      throw error
+    }
+  }
+
   module.exports = {
     getEnumValues,
-    getEnumSubTypeValues
+    getEnumSubTypeValues,
+    getEnumSubTypes
   }
