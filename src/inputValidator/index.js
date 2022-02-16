@@ -31,6 +31,7 @@ const { type } = require('./type')
 const { answerValidateText } = require('./answerValidateText')
 const { answerUnvalidateText } = require('./answerUnvalidateText')
 const { question } = require('./question')
+const { questionId} = require('./questionId')
 
 module.exports = {
   questionId,
