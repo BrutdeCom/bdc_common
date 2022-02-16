@@ -33,6 +33,7 @@ const { answerUnvalidateText } = require('./answerUnvalidateText')
 const { question } = require('./question')
 
 module.exports = {
+  questionId,
   question,
   answerUnvalidateText,
   answerValidateText,
