@@ -150,6 +150,7 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | Name       |     Description     | 
 | :------------    | :-------------: |
 | `InputValidator.question`    | question field validation |
+| `InputValidator.questionId`    | question id field validation |
 | `InputValidator.category`    | category field validation |
 | `InputValidator.introSubTheme`    | introSubTheme field validation |
 | `InputValidator.introTheme`    | introTheme field validation |
