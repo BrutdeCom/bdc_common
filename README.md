@@ -184,10 +184,186 @@ const myConst = Utils.myUtilsFunction()
 
 ## Enum Part
 
-| Name       |     Description     | Parameters | return |
-| :------------    | :-------------: | :-------------: | :-------------: |
-| `getEnumValues(enum)`    | Get values of the enum | Enum parameters (Enum.MyEnumType) | Return an array with enum values |
-| `getEnumSubTypeValues(enum, key)`  | Get values of the sub type in enum | Enum parameters (Enum.MyEnumType), `String` with sub type key | Return an array with enum sub type values  |
-| `getEnumSubTypes(enum)`  | Get sub type objects in enum | Enum parameters (Enum.MyEnumType) | Return an array with enum sub type objects |
+### Examples for use enum functions
+
+Enum example for all examples
+
+<details>
+  <summary>Enum.HabitatThemeQuestionType()</summary>
+
+```javascript
+    const HabitatThemeQuestionType = [
+        {
+          value: 'theme-service-book',
+          text: `Carnet d'entretien`,
+          subTheme: [
+              {
+                value: 'sub-theme-service-book',
+                text: `Carnet d'entretien`
+              }
+          ]
+        },
+        {
+            value: 'theme-framework',
+            text: 'Charpente',
+            subTheme: [
+                {
+                  value: 'sub-theme-wood-state',
+                  text: 'Etat du bois'
+                },
+                {
+                    value: 'sub-theme-termites',
+                    text: 'Termites'
+                }
+            ]
+          },
+          {
+            value: 'theme-roof',
+            text: 'Toiture',
+            subTheme: [
+                {
+                  value: 'sub-theme-roof-tiles',
+                  text: 'Les tuiles'
+                },
+                {
+                  value: 'sub-theme-ridge-and-hip',
+                  text: 'Faîtage et arêtier'
+                }
+            ]
+          }
+    ]
+```
+</details>
+
+<details>
+  <summary>getEnumValues(enum)</summary>
+
+  Get values of the enum
+
+```javascript
+const { Enum } = require('@brut2com/myhome-common')
+const { Utils } = require('@brutdecom/bdc_common')
+
+// or for REACT
+
+import { Enum } from '@brut2com/myhome-common')
+import { Utils } from '@brutdecom/bdc_common')
 
 
+const enumValues = Utils.getEnumValues(Enum.HabitatThemeQuestionType()) // Look enum example Enum.HabitatThemeQuestionType() above for details
+// enumValues = ['theme-service-book', 'theme-framework', 'theme-roof']
+```
+
+</details>
+
+<details>
+  <summary>getEnumSubTypeValues(enum, key)</summary>
+
+  Get sub type values of the enum
+
+```javascript
+const { Enum } = require('@brut2com/myhome-common')
+const { Utils } = require('@brutdecom/bdc_common')
+
+// or for REACT
+
+import { Enum } from '@brut2com/myhome-common')
+import { Utils } from '@brutdecom/bdc_common')
+
+
+const enumSubTypeValues = Utils.getEnumSubTypeValues(Enum.HabitatThemeQuestionType(), 'subTheme') // Look enum example Enum.HabitatThemeQuestionType() above for details
+// enumSubTypeValues = ['sub-theme-service-book', 'sub-theme-wood-state', 'sub-theme-termites', 'sub-theme-roof-tiles', 'sub-theme-ridge-and-hip']
+```
+
+</details>
+
+<details>
+  <summary>getEnumSubTypes(enum)</summary>
+
+  Get sub type objects in enum
+
+```javascript
+const { Enum } = require('@brut2com/myhome-common')
+const { Utils } = require('@brutdecom/bdc_common')
+
+// or for REACT
+
+import { Enum } from '@brut2com/myhome-common')
+import { Utils } from '@brutdecom/bdc_common')
+
+
+const enumSubType = Utils.getEnumSubTypes(Enum.HabitatThemeQuestionType()) // Look enum example Enum.HabitatThemeQuestionType() above for details
+// enumSubType = [
+//   {
+//     value: 'sub-theme-service-book',
+//     text: `Carnet d'entretien`
+//   },
+//   {
+//     value: 'sub-theme-wood-state',
+//     text: 'Etat du bois'
+//   },
+//   {
+//     value: 'sub-theme-termites',
+//     text: 'Termites'
+//   },
+//   {
+//     value: 'sub-theme-roof-tiles',
+//     text: 'Les tuiles'
+//   },
+//   {
+//     value: 'sub-theme-ridge-and-hip',
+//     text: 'Faîtage et arêtier'
+//    }
+//   ]
+```
+
+</details>
+
+<details>
+  <summary>getEnumSubTypeValuesByParent(enum, key, parentKey)</summary>
+
+  Get sub type objects in enum
+
+```javascript
+const { Enum } = require('@brut2com/myhome-common')
+const { Utils } = require('@brutdecom/bdc_common')
+
+// or for REACT
+
+import { Enum } from '@brut2com/myhome-common')
+import { Utils } from '@brutdecom/bdc_common')
+
+
+const subTypesValuesByParent = Utils.getEnumSubTypeValuesByParent(Enum.HabitatThemeQuestionType(), 'subTheme', 'theme-roof') // Look enum example Enum.HabitatThemeQuestionType() above for details
+// subTypesValuesByParent = ['sub-theme-roof-tiles', 'sub-theme-ridge-and-hip']
+```
+</details>
+
+<details>
+  <summary>getEnumSubTypeByParent(enum, key, parentKey)</summary>
+
+  Get sub type objects in enum
+
+```javascript
+const { Enum } = require('@brut2com/myhome-common')
+const { Utils } = require('@brutdecom/bdc_common')
+
+// or for REACT
+
+import { Enum } from '@brut2com/myhome-common')
+import { Utils } from '@brutdecom/bdc_common')
+
+
+const subTypesByParent = Utils.getEnumSubTypeByParent(Enum.HabitatThemeQuestionType(), 'subTheme', 'theme-roof') // Look enum example Enum.HabitatThemeQuestionType() above for details
+// subTypesByParent = [
+//     {
+//       value: 'sub-theme-roof-tiles',
+//       text: 'Les tuiles'
+//     },
+//     {
+//       value: 'sub-theme-ridge-and-hip',
+//       text: 'Faîtage et arêtier'
+//     }
+// ])
+```
+</details>
