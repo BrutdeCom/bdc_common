@@ -6,6 +6,7 @@ CONTENTS OF THIS PACKAGE
  * Regex
  * Validator
  * YUP Validator for Formik (InputValidator)
+ * Utils
 
 # Introduction
 
@@ -234,6 +235,10 @@ Enum example for all examples
     ]
 ```
 </details>
+
+-----------------
+
+For use enum functions
 
 <details>
   <summary>getEnumValues(enum)</summary>
