@@ -31,9 +31,13 @@ const { type } = require('./type')
 const { answerValidateText } = require('./answerValidateText')
 const { answerUnvalidateText } = require('./answerUnvalidateText')
 const { question } = require('./question')
-const { questionId} = require('./questionId')
+const { questionId } = require('./questionId')
+const { answerValidateTextFindOutMore } = require('./answerValidateTextFindOutMore')
+const { answerUnvalidateTextFindOutMore } = require('./answerUnvalidateTextFindOutMore')
 
 module.exports = {
+  answerUnvalidateTextFindOutMore,
+  answerValidateTextFindOutMore,
   questionId,
   question,
   answerUnvalidateText,
