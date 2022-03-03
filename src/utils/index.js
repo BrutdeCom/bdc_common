@@ -1,5 +1,6 @@
 const { getEnumValues, getEnumSubTypeValues, getEnumSubTypes, getEnumSubTypeValuesByParent, getEnumSubTypeByParent } = require('./enum')
 const { validateStringRequestItems } = require('./utils')
+const { checkId, createId } = require('./id')
 
 module.exports = {
   getEnumValues,
@@ -7,5 +8,7 @@ module.exports = {
   getEnumSubTypes,
   getEnumSubTypeValuesByParent,
   getEnumSubTypeByParent,
-  validateStringRequestItems
+  validateStringRequestItems,
+  checkId,
+  createId
 }
