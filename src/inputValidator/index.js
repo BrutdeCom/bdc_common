@@ -34,8 +34,10 @@ const { question } = require('./question')
 const { questionId } = require('./questionId')
 const { answerValidateTextFindOutMore } = require('./answerValidateTextFindOutMore')
 const { answerUnvalidateTextFindOutMore } = require('./answerUnvalidateTextFindOutMore')
+const { file } = require('./file')
 
 module.exports = {
+  file,
   answerUnvalidateTextFindOutMore,
   answerValidateTextFindOutMore,
   questionId,
