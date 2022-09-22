@@ -1,5 +1,5 @@
-const { isValidString } = require('./isValidString')
-const PHONE_REGEX = require('../regex/phone')
+import { isValidString } from './isValidString'
+import PHONE_REGEX from '../regex/phone'
 
 /**
  * Verify phone.
@@ -7,7 +7,7 @@ const PHONE_REGEX = require('../regex/phone')
  * @returns {boolean} Return a boolean for verify conditions input for phone.
  */
 
- const isValidPhone = (phone) => {
+export const isValidPhone = (phone) => {
     try {
       if (!isValidString(phone)) {
         return false
@@ -20,8 +20,4 @@ const PHONE_REGEX = require('../regex/phone')
     } catch (error) {
       throw error
     }
-  }
-
-  module.exports = {
-      isValidPhone
   }

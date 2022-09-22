@@ -1,6 +1,6 @@
-const _ = require('lodash')
+import _ from 'lodash'
 
-const isValidEnum = (value, payloadEnum) => {
+export const isValidEnum = (value, payloadEnum) => {
   try {
     if(_.isNil(value) || _.isNil(payloadEnum)) {
       return false
@@ -15,6 +15,7 @@ const isValidEnum = (value, payloadEnum) => {
     }
     
     let validate = []
+    // @ts-ignore
     validate = _.filter(payloadEnum, Enum => {
       const enumValue = _.get(Enum, 'value')
 
@@ -29,8 +30,4 @@ const isValidEnum = (value, payloadEnum) => {
   } catch (error) {
     throw error
   }
-}
-  
-module.exports = {
-  isValidEnum
 }

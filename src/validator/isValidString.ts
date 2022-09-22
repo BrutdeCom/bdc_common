@@ -1,5 +1,5 @@
-const _ = require('lodash')
-const validator = require('validator')
+import _ from 'lodash'
+import validator from 'validator'
 
 /**
  * Verify string format.
@@ -7,7 +7,7 @@ const validator = require('validator')
  * @returns {boolean} Return a boolean for verify conditions input for string.
  */
 
- const isValidString = (string) => {
+export const isValidString = (string) => {
     const { isEmpty } = validator
     try {
       if (_.isNil(string)) {
@@ -27,7 +27,3 @@ const validator = require('validator')
       throw error
     }
   }
-
-module.exports = {
-  isValidString
-}

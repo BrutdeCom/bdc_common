@@ -1,6 +1,6 @@
-const _ = require('lodash')
+import _ from 'lodash'
 
-const { isValidString } = require('./isValidString')
+import { isValidString } from './isValidString'
 
 /**
  * Verify lastname.
@@ -8,7 +8,7 @@ const { isValidString } = require('./isValidString')
  * @returns {boolean} Return a boolean for verify conditions input for lastname.
  */
 
- const isValidLastname = (lastname) => {
+export const isValidLastname = (lastname) => {
     try {
       if (!isValidString(lastname)) {
         return false
@@ -21,8 +21,4 @@ const { isValidString } = require('./isValidString')
     } catch (error) {
       throw error
     }
-  }
-
-  module.exports = {
-      isValidLastname
   }

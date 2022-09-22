@@ -1,5 +1,5 @@
-const { isValidString } = require('./isValidString')
-const PASSWORD_REGEX = require('../regex/password')
+import { isValidString } from './isValidString'
+import PASSWORD_REGEX from '../regex/password'
 
 /**
  * Verify password.
@@ -8,7 +8,7 @@ const PASSWORD_REGEX = require('../regex/password')
  */
 
 // TODO: Modify with params for custom password
- const isValidPassword = (password) => {
+export const isValidPassword = (password) => {
     try {
       if (!isValidString(password)) {
         return false
@@ -22,8 +22,4 @@ const PASSWORD_REGEX = require('../regex/password')
     } catch (error) {
       throw error
     }
-  }
-
-  module.exports = {
-      isValidPassword
   }

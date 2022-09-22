@@ -1,8 +1,8 @@
-const _ = require('lodash')
-const { isValidString } = require('./isValidString')
+import _ from 'lodash'
+import { isValidString } from './isValidString'
 
 // Lhun
-const isValidSiret = (payload) => {
+export const isValidSiret = (payload) => {
   let isValid
 
   if (!isValidString(payload) || _.size(payload) !== 14) {
@@ -16,14 +16,17 @@ const isValidSiret = (payload) => {
   } else {
     let somme = 0
     let tmp
-
+    
+    // @ts-ignore
     for (let cpt = 0; cpt<siret.length; cpt++) {
       if ((cpt % 2) == 0) {
+        // @ts-ignore
         tmp = siret.charAt(cpt) * 2
         if (tmp > 9) {
           tmp -= 9
         }
       } else {
+        // @ts-ignore
         tmp = siret.charAt(cpt)
         somme += parseInt(tmp)
       }
@@ -38,7 +41,3 @@ const isValidSiret = (payload) => {
   
   return isValid
   }
-
-module.exports = {
-  isValidSiret
-}

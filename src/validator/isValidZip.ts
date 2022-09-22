@@ -1,7 +1,7 @@
-const _ = require('lodash')
+import _ from 'lodash'
 
-const { isValidString } = require('./isValidString')
-const ZIP_REGEX = require('../regex/zip')
+import { isValidString } from './isValidString'
+import ZIP_REGEX from '../regex/zip'
 
 /**
  * Verify zip.
@@ -9,7 +9,7 @@ const ZIP_REGEX = require('../regex/zip')
  * @returns {boolean} Return a boolean for verify conditions input for zip.
  */
 
-const isValidZip = (zip) => {
+export const isValidZip = (zip) => {
     try {
       if (!isValidString(zip)) {
         return false
@@ -31,8 +31,4 @@ const isValidZip = (zip) => {
     } catch (error) {
       throw error
     }
-  }
-
-  module.exports = {
-      isValidZip
   }
