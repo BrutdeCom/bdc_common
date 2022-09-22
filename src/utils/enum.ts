@@ -1,4 +1,4 @@
-const _ = require('lodash')
+import _ from 'lodash'
 
 /**
  * Return an array, contain enum values.
@@ -6,7 +6,7 @@ const _ = require('lodash')
  * @returns {array} Return an array, contain enum values.
  */
 
- const getEnumValues = (payloadEnum) => {
+export const getEnumValues = (payloadEnum: []) => {
     try {
       if (!_.isArray(payloadEnum)) {
         throw new Error('The payloadEnum parameter must be an array.')
@@ -34,7 +34,7 @@ const _ = require('lodash')
  * @returns {array} Return an array, contain enum sub type values.
  */
 
- const getEnumSubTypeValues = (payloadEnum, key) => {
+ const getEnumSubTypeValues = (payloadEnum: [], key:  string) => {
     try {
       if (!_.isArray(payloadEnum)) {
         throw new Error('The payloadEnum parameter must be an array.')
