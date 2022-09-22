@@ -1,7 +1,7 @@
-const _ = require('lodash')
+import _ from 'lodash'
 
-const { isValidString } = require('./isValidString')
-const CITY_REGEX = require('../regex/city')
+import { isValidString } from './isValidString'
+import CITY_REGEX from '../regex/city'
 
 /**
  * Verify city.
@@ -9,7 +9,7 @@ const CITY_REGEX = require('../regex/city')
  * @returns {boolean} Return a boolean for verify conditions input for city.
  */
 
- const isValidCity = (city) => {
+export const isValidCity = (city) => {
     try {
       if (!isValidString(city)) {
         return false
@@ -26,8 +26,4 @@ const CITY_REGEX = require('../regex/city')
     } catch (error) {
       throw error
     }
-  }
-
-  module.exports = {
-      isValidCity
   }

@@ -1,5 +1,5 @@
-const { isValidString } = require('./isValidString')
-const validator = require('validator')
+import { isValidString } from './isValidString'
+import validator from 'validator'
 
 /**
  * Verify email format.
@@ -7,7 +7,7 @@ const validator = require('validator')
  * @returns {boolean} Return a boolean for verify conditions input for email.
  */
 
- const isValidEmail = (email) => {
+export const isValidEmail = (email) => {
     const { isEmail } = validator
     try {
       if (!isValidString(email)) {
@@ -22,8 +22,4 @@ const validator = require('validator')
     } catch (error) {
       throw error
     }
-  }
-
-  module.exports = {
-    isValidEmail
   }
