@@ -1,6 +1,6 @@
-const _ = require('lodash')
+import _ from 'lodash'
 
-const validateStringRequestItems = (payload) => {
+export const validateStringRequestItems = (payload) => {
     let isValid = true
     _.map(payload, item => {
       if (!_.isString(item)) {
@@ -9,8 +9,4 @@ const validateStringRequestItems = (payload) => {
     })
 
   return isValid
-}
-
-module.exports = {
-  validateStringRequestItems
 }

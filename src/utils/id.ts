@@ -1,13 +1,13 @@
-const { v4: uuid } = require('uuid')
-const _ = require('lodash')
+import { v4 } from 'uuid'
+import _ from 'lodash'
 
-const checkId = (id) => {
+export const checkId = (id) => {
   if (!isValid(id)) {
     throw new Error(`id is not valid`)
   }
 }
 
-const isValid = (id) => {
+export const isValid = (id) => {
   if (_.isNil(id) || !_.isString(id)) {
     return false
   }
@@ -30,12 +30,6 @@ const isValid = (id) => {
 }
 
 // Ensure that the generation of the id is consistent throughout the code
-const createId = () => {
-  return uuid()
-}
-
-module.exports = {
-  createId,
-  isValid,
-  checkId
+export const createId = () => {
+  return v4.uuid()
 }

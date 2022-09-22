@@ -6,7 +6,7 @@ import _ from 'lodash'
  * @returns {array} Return an array, contain enum values.
  */
 
-export const getEnumValues = (payloadEnum: []) => {
+export const getEnumValues = (payloadEnum) => {
     try {
       if (!_.isArray(payloadEnum)) {
         throw new Error('The payloadEnum parameter must be an array.')
@@ -34,7 +34,7 @@ export const getEnumValues = (payloadEnum: []) => {
  * @returns {array} Return an array, contain enum sub type values.
  */
 
- const getEnumSubTypeValues = (payloadEnum: [], key:  string) => {
+ export const getEnumSubTypeValues = (payloadEnum, key) => {
     try {
       if (!_.isArray(payloadEnum)) {
         throw new Error('The payloadEnum parameter must be an array.')
@@ -52,10 +52,11 @@ export const getEnumValues = (payloadEnum: []) => {
       _.map(payloadEnum, item => {
         const subType = _.get(item, `${key}`)
 
-        _.map(subType, subItem => {
+        _.map(subType, (subItem) => {
             const value = _.get(subItem, 'value')
     
             if (!_.isNil(value)) {
+              // @ts-ignore
                 subTypeValues.push(value)
             }
         })
@@ -75,7 +76,7 @@ export const getEnumValues = (payloadEnum: []) => {
  * @returns {array} Return an array, contain enum sub type values.
  */
 
- const getEnumSubTypeValuesByParent = (payloadEnum, key, parentKey) => {
+ export const getEnumSubTypeValuesByParent = (payloadEnum, key, parentKey) => {
   try {
     if (!_.isArray(payloadEnum)) {
       throw new Error('The payloadEnum parameter must be an array.')
@@ -105,6 +106,7 @@ export const getEnumValues = (payloadEnum: []) => {
             const subTypeValue = _.get(subItem, 'value')
 
             if (!_.isNil(subTypeValue)) {
+              // @ts-ignore
               subTypeValues.push(subTypeValue)
             }
           })
@@ -126,7 +128,7 @@ export const getEnumValues = (payloadEnum: []) => {
  * @returns {array} Return an array, contain enum sub type values.
  */
 
-  const getEnumSubTypeByParent = (payloadEnum, key, parentKey) => {
+  export const getEnumSubTypeByParent = (payloadEnum, key, parentKey) => {
     try {
       if (!_.isArray(payloadEnum)) {
         throw new Error('The payloadEnum parameter must be an array.')
@@ -151,6 +153,7 @@ export const getEnumValues = (payloadEnum: []) => {
           const subTypes = _.get(item, key)
   
           _.map(subTypes, subItem => {
+            // @ts-ignore
             enumSubTypes.push(subItem)
           })
         }
@@ -168,7 +171,7 @@ export const getEnumValues = (payloadEnum: []) => {
  * @returns {array} Return an array, contain enum sub type objects.
  */
 
-  const getEnumSubTypes = (payloadEnum, key) => {
+export const getEnumSubTypes = (payloadEnum, key) => {
     try {
       if (!_.isArray(payloadEnum)) {
         throw new Error('The payloadEnum parameter must be an array.')
@@ -188,6 +191,7 @@ export const getEnumValues = (payloadEnum: []) => {
         const subTypes = _.get(item, key)
 
         _.map(subTypes, subItem => {
+          // @ts-ignore
           enumSubTypes.push(subItem)
         })
       })
@@ -197,12 +201,4 @@ export const getEnumValues = (payloadEnum: []) => {
     } catch (error) {
       throw error
     }
-  }
-
-  module.exports = {
-    getEnumValues,
-    getEnumSubTypeValues,
-    getEnumSubTypes,
-    getEnumSubTypeValuesByParent,
-    getEnumSubTypeByParent
   }
