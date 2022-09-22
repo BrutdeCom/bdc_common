@@ -5,4 +5,4 @@
 
  const ZIP_REGEX = /^\d*$/
 
- module.exports = ZIP_REGEX
+export default ZIP_REGEX

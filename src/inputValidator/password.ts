@@ -1,6 +1,10 @@
 import Yup from 'yup'
 
-export const password = Yup.object({
+interface BasePasswordSchema {  
+  password: string
+}
+
+export const password: Yup.SchemaOf<BasePasswordSchema> = Yup.object({
     password: Yup.string().required('Un mot de passe est requis')
       .matches(
         /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_/])([-+!*$@%_\w]{8,})$/,
