@@ -185,6 +185,8 @@ const myConst = Utils.myUtilsFunction()
 
 ## Enum Part
 
+PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION (DOC COMING SOON)
+
 ### Examples for use enum functions
 
 Enum example for all examples
