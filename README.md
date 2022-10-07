@@ -1,23 +1,21 @@
 CONTENTS OF THIS PACKAGE
 ---------------------
 
- * <a name="intro">Introduction</a>
- * Installation
- * Regex
- * Validator
- * YUP Validator for Formik (InputValidator)
- * Utils
- * <a name="enum">Enumerations</a>
+ * [Introduction](#introduction)
+ * [Installation](#installation)
+ * [Regex](#regex)
+ * [Validator](#validator)
+ * [YUP Validator for Formik (InputValidator)](#yup)
+ * [Utils](#utils)
+ * [Enumerations](#enum)
 
-# Introduction
+# <a name="introduction">Introduction</a>
 
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com)
-[![GitHub latest commit](https://badgen.net/github/last-commit/Naereen/Strapdown.js)](https://GitHub.com/Naereen/StrapDown.js/commit/)
-[![Latest release](https://badgen.net/github/release/Naereen/Strapdown.js)](https://github.com/Naereen/Strapdown.js/releases)
 
 This package is npm package in JavaScript for BrutDeCom projects.
 
-# Installation
+# <a name="installation">Installation</a>
 
 For install this package, run `npm i @brutdecom/bdc_common`
 
@@ -31,7 +29,7 @@ or
 
 `import { Regex } from @brutdecom/bdc_common`
 
-# Regex
+# <a name="regex">Regex</a>
 
 Example for use Regex with this package :
 
@@ -55,7 +53,7 @@ const myConst = Regex.password
 | city             | City (2 characters minimum, not number)    |
 | zip              | French zip code (5 numbers) |
 
-# Validator
+# <a name="validator">Validator</a>
 
 Validator part is utils for validate various data.
 Example for use Validator with this package :
@@ -91,7 +89,7 @@ const myConst = Validator.isValidString(14)
 | `isValidSiret('string')`    | Verify if value is valid siret | `String` siret parameters ('12345678998765') | Return `true` or `false` |
 | `isValidEnum('string', array)`    | Verify if value is valid enumeration | `String` value parameters ('test'), `array` parameters (Enum.MyEnum) | Return `true` or `false` |
 
-# YUP Validator for Formik (InputValidator)
+# <a name="yup">YUP Validator for Formik (InputValidator)</a>
 
 InputValidator part is utils for validate data in Formik form (validationSchemas parameter).
 Validate data, and display matches error in frontend (based on YUP package)
@@ -166,7 +164,7 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.answerUnvalidateText`    | answerUnvalidateText field validation |
 | `InputValidator.answerValidateText`    | answerValidateText field validation |
 
-# Utils
+# <a name="utils">Utils</a>
 
 Example for use Utils with this package :
 
@@ -188,7 +186,7 @@ const myConst = Utils.myUtilsFunction()
 | `validateStringRequestItems(body)`    | Get if all values in request body is string | req.body parameters (object) | Return true if is ok, else return false |
 
 
-## Enumerations [link text](#enum)
+## <a name="enum">Enumerations</a>
 
  :warning: :warning: PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION  :warning: :warning:
 
@@ -377,8 +375,8 @@ const { Utils } = require('@brutdecom/bdc_common')
 
 // or for REACT
 
-import { Enum } from '@brut2com/myhome-common')
-import { Utils } from '@brutdecom/bdc_common')
+import { Enum } from '@brut2com/myhome-common'
+import { Utils } from '@brutdecom/bdc_common'
 
 
 const enumValues = Utils.getEnumValues(Enum.HabitatThemeQuestionType()) // Look enum example Enum.HabitatThemeQuestionType() above for details
