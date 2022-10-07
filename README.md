@@ -1,14 +1,19 @@
 CONTENTS OF THIS PACKAGE
 ---------------------
 
- * Introduction
+ * <a name="intro">Introduction</a>
  * Installation
  * Regex
  * Validator
  * YUP Validator for Formik (InputValidator)
  * Utils
+ * <a name="enum">Enumerations</a>
 
 # Introduction
+
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com)
+[![GitHub latest commit](https://badgen.net/github/last-commit/Naereen/Strapdown.js)](https://GitHub.com/Naereen/StrapDown.js/commit/)
+[![Latest release](https://badgen.net/github/release/Naereen/Strapdown.js)](https://github.com/Naereen/Strapdown.js/releases)
 
 This package is npm package in JavaScript for BrutDeCom projects.
 
@@ -183,9 +188,9 @@ const myConst = Utils.myUtilsFunction()
 | `validateStringRequestItems(body)`    | Get if all values in request body is string | req.body parameters (object) | Return true if is ok, else return false |
 
 
-## Enum Part
+## Enumerations [link text](#enum)
 
-PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION
+ :warning: :warning: PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION  :warning: :warning:
 
 ### Create Enum
 
@@ -304,7 +309,7 @@ export const CarBrandEnum = Utils.createEnum(CarBrand, 'CarBrand')
 </details>
 
 <details>
-  <summary>OLD VERSION</summary>
+  <summary> :warning: OLD VERSION</summary>
 
 ### Examples for use enum functions
 
