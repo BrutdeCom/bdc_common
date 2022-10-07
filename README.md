@@ -185,7 +185,126 @@ const myConst = Utils.myUtilsFunction()
 
 ## Enum Part
 
-PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION (DOC COMING SOON)
+PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION
+
+### Create Enum
+
+```js
+import { Utils } from '@brutdecom/bdc_common'
+
+const CarBrand = {
+  RENAULT: 'renault', 
+  PEUGEOT_CITROEN: 'peugeot-citroen', 
+  FORD: 'ford'
+}
+
+export const CarBrandEnum = Utils.createEnum(CarBrand, 'CarBrand')
+```
+
+### Methods
+
+<details>
+  <summary>getValues()</summary>
+
+  ```js
+  CarBrand.getValues() // return ['renault', 'peugeot-citroen', 'ford']
+  ```
+  
+</details>
+
+<details>
+  <summary>next()</summary>
+
+  ```js
+  CarBrand.next() // return 'renault'
+  CarBrand.next('renault') // return 'peugeot-citroen'
+  CarBrand.next('ford') // return 'renault'
+  ```
+  
+</details>
+
+<details>
+  <summary>isValid()</summary>
+
+  ```js
+  CarBrand.isValid('renault') // return true
+  CarBrand.isValid('test') // return false
+  ```
+  
+</details>
+
+<details>
+  <summary>getCategories()</summary>
+
+  ```js
+  // Update CarBrand with categories for example
+  const CarBrand = {
+    frenchBrand: {
+      RENAULT: 'renault', 
+      PEUGEOT_CITROEN: 'peugeot-citroen', 
+    },
+    americanBrand: {
+      FORD: 'ford'
+    }
+  }
+
+  CarBrand.getCategories() // return ['frenchBrand', 'americanBrand']
+  ```
+  
+</details>
+
+<details>
+  <summary>getCategory()</summary>
+
+  ```js
+  // Update CarBrand with categories for example
+  const CarBrand = {
+    frenchBrand: {
+      RENAULT: 'renault', 
+      PEUGEOT_CITROEN: 'peugeot-citroen', 
+    },
+    americanBrand: {
+      FORD: 'ford'
+    }
+  }
+
+  CarBrand.getCategory('frenchBrand') // return ['renault', 'peugeot-citroen']
+  ```
+  
+</details>
+
+<details>
+  <summary>getIndex()</summary>
+
+  ```js
+  CarBrand.getIndex('renault') // return 0
+  CarBrand.getIndex('RENAULT') // return 0
+  ```
+  
+</details>
+
+<details>
+  <summary>getMetaData()</summary>
+
+  ```js
+  // Update CarBrand with categories for example
+  const CarBrand = {
+      RENAULT: 'renault', 
+      PEUGEOT_CITROEN: 'peugeot-citroen',
+      FORD: {
+        value: 'ford',
+        engine: '1.2',
+        test: false
+      }
+    }
+
+  CarBrand.getMetaData(CarBrand.FORD, 'engine') // return '1.2'
+  CarBrand.getMetaData(CarBrand.FORD, 'test') // return false
+  ``` 
+</details>
+
+<details>
+  <summary>OLD VERSION</summary>
 
 ### Examples for use enum functions
 
@@ -373,4 +492,5 @@ const subTypesByParent = Utils.getEnumSubTypeByParent(Enum.HabitatThemeQuestionT
 //     }
 // ])
 ```
+</details>
 </details>

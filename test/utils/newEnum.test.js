@@ -15,6 +15,7 @@ describe('utils/enum', function () {
         value6: 'test6',
         value7: {
           value: 'test7',
+          defaultValue: '4',
           defaultUnit: 'kg'
         }
       },
@@ -234,6 +235,7 @@ describe('utils/enum', function () {
     it('Basic', function () {
       expect(this.enumType.getMetaData(this.enumType.value7, 'defaultUnit', 'm')).eq('kg')
       expect(this.enumType.getMetaData(this.enumType.value8, 'defaultUnit', 'm')).eq('kg')
+      expect(this.enumType.getMetaData(this.enumType.value7, 'defaultValue')).eq('4')
     })
 
     it('Value is nil', function () {
