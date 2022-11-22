@@ -1,7 +1,7 @@
 const Yup = require('yup')
 
 const socialReason = Yup.object({
-  socialReason: Yup.string().required('La raison sociale est requise.'),
+  socialReason: Yup.string(),
 })
 
 module.exports = {

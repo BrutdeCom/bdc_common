@@ -1,7 +1,7 @@
 const Yup = require('yup')
 
 const question = Yup.object({
-    question: Yup.string().required('La question est requise.'),
+    question: Yup.string(),
 })
 
 module.exports = {

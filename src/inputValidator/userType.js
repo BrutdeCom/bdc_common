@@ -1,7 +1,7 @@
 const Yup = require('yup')
 
 const userType = Yup.object({
-  userType: Yup.string().required('Ce champ est requis.'),
+  userType: Yup.string(),
 })
 
 module.exports = {
