@@ -148,6 +148,10 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.birthCountry`    | birthCountry field validation |
 | `InputValidator.birthCounty`    | birthCounty field validation |
 | `InputValidator.birthCity`    | birthCity field validation |
+| `InputValidator.message`    | message (text area in contact form for example) field validation |
+| `InputValidator.subject`    | subject (object input in contact form for example) field validation |
+| `InputValidator.consent`    | consent (RGPD in contact form for example) field validation |
+
 
 ### For My Home Project (but it is possible to use it elsewhere)
 
