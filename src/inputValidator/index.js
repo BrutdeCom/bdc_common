@@ -35,8 +35,14 @@ const { questionId } = require('./questionId')
 const { answerValidateTextFindOutMore } = require('./answerValidateTextFindOutMore')
 const { answerUnvalidateTextFindOutMore } = require('./answerUnvalidateTextFindOutMore')
 const { file } = require('./file')
+const { message } = require('./message')
+const { subject } = require('./subject')
+const { consent } = require('./consent')
 
 module.exports = {
+  consent,
+  subject,
+  message,
   file,
   answerUnvalidateTextFindOutMore,
   answerValidateTextFindOutMore,
