@@ -1,5 +1,5 @@
 const { getEnumValues, getEnumSubTypeValues, getEnumSubTypes, getEnumSubTypeValuesByParent, getEnumSubTypeByParent } = require('./enum')
-const { validateStringRequestItems, nextValue } = require('./utils')
+const { validateStringRequestItems, nextValue, deleteDuplicateKeysAndMakeSumInObjectArray } = require('./utils')
 const { checkId, createId } = require('./id');
 const { createEnum } = require('./enumType')
 
@@ -13,5 +13,6 @@ module.exports = {
   checkId,
   createId,
   nextValue,
-  createEnum
+  createEnum,
+  deleteDuplicateKeysAndMakeSumInObjectArray
 }
