@@ -42,7 +42,53 @@ const nextValue = (array, value) => {
   return _.nth(array, nextIndex)
 }
 
+/**
+ * deleteDuplicateKeysAndMakeSumInObjectArray. Normalize object array for delete duplicate object id and make sum for sum key by object id.
+ * @param {array} items - Contains items object in array.
+ * @returns {array} return array of object with duplicate items deleted and sum for sum key.
+ */
+
+const deleteDuplicateKeysAndMakeSumInObjectArray = (items, config = {}) => {
+  const sumKey = _.get(config, 'sumKey')
+  const idKey = _.get(config, 'idKey')
+
+  if(_.isNil(items) || _.isEmpty(items) || !_.isArray(items)) {
+      throw new Error('items is not correct format (empty, null or is not an array)')
+  }
+
+  if(_.isNil(config) || _.isEmpty(config) || !_.isPlainObject(config)) {
+      throw new Error('config is not correct format (empty, null or is not an object)')
+  }
+
+  if(_.isNil(sumKey) || !_.isString(sumKey) || _.isEmpty(sumKey)) {
+      throw new Error('sum key is nil or is not a string')
+  }
+
+  if(_.isNil(idKey) || !_.isString(idKey) || _.isEmpty(idKey)) {
+      throw new Error('id key is nil or is not a string')
+  }
+
+  const normalizedItems = []
+  const ids = _.uniq(_.map(items, item => _.get(item, `${idKey}`))) // [ '123', '234', '456' ]
+
+  _.map(ids, id => {
+      const filterItemsByIds = _.filter(items, item => { return _.get(item, `${idKey}`) === id})
+      const sumById = filterItemsByIds.reduce((sum, item) => sum + _.get(item, `${sumKey}`), 0)
+
+      const result = {
+          ..._.head(filterItemsByIds)
+      }
+
+      _.set(result, `${sumKey}`, sumById)
+
+      normalizedItems.push(result)
+  })
+
+  return normalizedItems
+}
+
 module.exports = {
   validateStringRequestItems,
-  nextValue
+  nextValue,
+  deleteDuplicateKeysAndMakeSumInObjectArray
 }

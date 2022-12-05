@@ -188,6 +188,7 @@ const myConst = Utils.myUtilsFunction()
 | Name       |     Description     | Parameters | return |
 | :------------    | :-------------: | :-------------: | :-------------: |
 | `validateStringRequestItems(body)`    | Get if all values in request body is string | req.body parameters (object) | Return true if is ok, else return false |
+| `deleteDuplicateKeysAndMakeSumInObjectArray(items, config = {})`    | In array of object, delete duplicate key, and make sum values for this keys | items (array of object), config = { sumKey: key to use to sum, idKey: key to use to filter and delete duplicates }| Return an array of object with duplicates keys deleted and sum values for this keys (See tests for understanding) |
 
 
 ## <a name="enum">Enumerations</a>
