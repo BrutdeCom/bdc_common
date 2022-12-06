@@ -183,7 +183,6 @@ import { Utils } from '@brutdecom/bdc_common'
 // Use utils function
 const myConst = Utils.myUtilsFunction()
 // return ...
-
 ```
 
 | Name       |     Description     | Parameters | return |
