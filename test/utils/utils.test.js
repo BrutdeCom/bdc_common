@@ -1,5 +1,6 @@
-const { validateStringRequestItems, nextValue, deleteDuplicateKeysAndMakeSumInObjectArray, verifyOrderExpirationTime } = require('../../src/utils/utils')
 const moment = require('moment')
+
+const { validateStringRequestItems, nextValue, deleteDuplicateKeysAndMakeSumInObjectArray, verifyOrderExpirationTime, normalizeObjectData } = require('../../src/utils/utils')
 
 const expect = require('chai').expect
 
@@ -233,5 +234,91 @@ describe('validateStringRequestItems', function () {
             expect(() => verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: '30' })).throws('timeToCompare is nil or is not a number')
             expect(() => verifyOrderExpirationTime(date, { unit: 'minutes' })).throws('timeToCompare is nil or is not a number')
             expect(() => verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: null })).throws('timeToCompare is nil or is not a number')
+        })
+    })
+
+    describe('normalizeObjectData', function () {
+        it('should be a function', function () {
+            expect(normalizeObjectData).to.be.a('function')
+        })
+
+        it('should be return array data normalized', async function () {
+            const data = [
+                { ProductCode: 'SM', ProductID: 48723, DefaultName: 'Test 01', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48700, DefaultName: 'Test 03', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48710, DefaultName: 'Test 02', Price: 14, ImageID: 78654, Resa: '', Local: '' }
+            ]
+
+            const res = await normalizeObjectData(data, {
+                pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'],
+                setValues: [{ key: 'inStock', value: 20 }, { key: 'tax', value: 10 }],
+                replaceKeys: [{ oldKey: 'DefaultName', newKey: 'productName' }]
+            })
+
+            expect(res).to.be.an('array').to.deep.equal([
+                {
+                    productId: 48723,
+                    productName: 'Test 01',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM',
+                    inStock: 20,
+                    tax: 10
+                },
+                {
+                    productId: 48700,
+                    productName: 'Test 03',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM',
+                    inStock: 20,
+                    tax: 10
+                },
+                {
+                    productId: 48710,
+                    productName: 'Test 02',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM',
+                    inStock: 20,
+                    tax: 10
+                }
+            ])
+        })
+
+        it('should be return array data normalized', async function () {
+            const data = [
+                { ProductCode: 'SM', ProductID: 48723, DefaultName: 'Test 01', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48700, DefaultName: 'Test 03', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48710, DefaultName: 'Test 02', Price: 14, ImageID: 78654, Resa: '', Local: '' }
+            ]
+
+            const res = await normalizeObjectData(data, {
+                pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode']
+            })
+
+            expect(res).to.be.an('array').to.deep.equal([
+                {
+                    productId: 48723,
+                    defaultName: 'Test 01',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM'
+                },
+                {
+                    productId: 48700,
+                    defaultName: 'Test 03',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM'
+                },
+                {
+                    productId: 48710,
+                    defaultName: 'Test 02',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM'
+                }
+            ])
         })
     })

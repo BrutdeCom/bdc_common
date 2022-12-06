@@ -124,9 +124,75 @@ const verifyOrderExpirationTime = (createdAt, config = {}) => {
   }
 }
 
+/**
+ * Normalize products data.
+ * @params {products} An array. Contain products objects
+ * @returns {array} Return an array. Contain normalized products.
+ */
+
+const normalizeObjectData = (products, config = {}) => {
+  if (_.isEmpty(config) || !_.isPlainObject(config) || _.isNil(config)) {
+    throw new Error('config is not correct (nil, empty or is not an object)')
+  }
+
+  const pickedKeys = _.get(config, 'pickedKeys')
+
+  if (_.isEmpty(pickedKeys) || !_.isArray(pickedKeys) || _.isNil(pickedKeys)) {
+    throw new Error('pickedKeys is not correct (nil, empty or is not an object)')
+  }
+
+  const normalizedProducts = []
+  _.map(products, (product) => {
+      const pickedProducts = _.clone(_.pick(product, pickedKeys))
+
+      const newProduct = {}
+      _.map(_.keys(pickedProducts), key => {
+        const replaceKeys = _.get(config, 'replaceKeys')
+
+        if(!_.isNil(replaceKeys) && _.isArray(replaceKeys)) {
+          _.map(replaceKeys, replace => {
+            if(_.isNil(replace) || !_.isPlainObject(replace) || _.isEmpty(replace)) {
+              throw new TypeError('replaceKeys is incorrect')
+            }
+            
+            const oldKey = _.get(replace, 'oldKey')
+            const newKey = _.get(replace, 'newKey')
+            
+            if(key === oldKey) {
+              _.set(newProduct, newKey, _.get(pickedProducts, key))
+            } else {
+              _.set(newProduct, _.camelCase(key), _.get(pickedProducts, key))
+            }
+          })
+        } else {
+          _.set(newProduct, _.camelCase(key), _.get(pickedProducts, key))
+        }
+      })
+
+      const setValues = _.get(config, 'setValues')
+
+      if(!_.isNil(setValues) && _.isArray(setValues)) {
+        _.map(setValues, values => {
+          if(_.isNil(values) || !_.isPlainObject(values) || _.isEmpty(values)) {
+            throw new TypeError('values is incorrect')
+          }
+
+          const value = _.get(values, 'value')
+          const key = _.get(values, 'key')
+          _.set(newProduct, key, value)
+        })
+      }
+
+      normalizedProducts.push(newProduct)
+  })
+
+  return normalizedProducts
+}
+
 module.exports = {
   verifyOrderExpirationTime,
   validateStringRequestItems,
   nextValue,
-  deleteDuplicateKeysAndMakeSumInObjectArray
+  deleteDuplicateKeysAndMakeSumInObjectArray,
+  normalizeObjectData
 }
