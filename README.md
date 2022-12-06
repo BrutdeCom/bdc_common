@@ -192,6 +192,7 @@ const myConst = Utils.myUtilsFunction()
 | `verifyOrderExpirationTime(createdAt, config = {})`    | Verify if createdAt date is superior in timeToCompare with date now | createdAt: date to compare, config = { unit: time unit string (minutes, seconds, etc. See momentjs units in .diff method), timeToCompare: number. Time to compare, example: 30 for 30 minutes if unit is minutes } | Return true if is superior, else return false |
 
 
+
 ## <a name="enum">Enumerations</a>
 
  :warning: :warning: PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION  :warning: :warning:

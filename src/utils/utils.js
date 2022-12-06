@@ -130,7 +130,11 @@ const verifyOrderExpirationTime = (createdAt, config = {}) => {
  * @returns {array} Return an array. Contain normalized products.
  */
 
-const normalizeObjectData = (products, config = {}) => {
+const normalizeObjectData = (data, config = {}) => {
+  if (_.isEmpty(data) || !_.isArray(data) || _.isNil(data)) {
+    throw new Error('data is not correct (nil, empty or is not an object)')
+  }
+
   if (_.isEmpty(config) || !_.isPlainObject(config) || _.isNil(config)) {
     throw new Error('config is not correct (nil, empty or is not an object)')
   }
@@ -141,31 +145,31 @@ const normalizeObjectData = (products, config = {}) => {
     throw new Error('pickedKeys is not correct (nil, empty or is not an object)')
   }
 
-  const normalizedProducts = []
-  _.map(products, (product) => {
-      const pickedProducts = _.clone(_.pick(product, pickedKeys))
+  const normalizedData = []
+  _.map(data, (product) => {
+      const pickedData = _.clone(_.pick(product, pickedKeys))
 
-      const newProduct = {}
-      _.map(_.keys(pickedProducts), key => {
+      const newItem = {}
+      _.map(_.keys(pickedData), key => {
         const replaceKeys = _.get(config, 'replaceKeys')
 
         if(!_.isNil(replaceKeys) && _.isArray(replaceKeys)) {
           _.map(replaceKeys, replace => {
             if(_.isNil(replace) || !_.isPlainObject(replace) || _.isEmpty(replace)) {
-              throw new TypeError('replaceKeys is incorrect')
+              throw new TypeError('replace is incorrect')
             }
             
             const oldKey = _.get(replace, 'oldKey')
             const newKey = _.get(replace, 'newKey')
             
             if(key === oldKey) {
-              _.set(newProduct, newKey, _.get(pickedProducts, key))
+              _.set(newItem, newKey, _.get(pickedData, key))
             } else {
-              _.set(newProduct, _.camelCase(key), _.get(pickedProducts, key))
+              _.set(newItem, _.camelCase(key), _.get(pickedData, key))
             }
           })
         } else {
-          _.set(newProduct, _.camelCase(key), _.get(pickedProducts, key))
+          _.set(newItem, _.camelCase(key), _.get(pickedData, key))
         }
       })
 
@@ -179,14 +183,14 @@ const normalizeObjectData = (products, config = {}) => {
 
           const value = _.get(values, 'value')
           const key = _.get(values, 'key')
-          _.set(newProduct, key, value)
+          _.set(newItem, key, value)
         })
       }
 
-      normalizedProducts.push(newProduct)
+      normalizedData.push(newItem)
   })
 
-  return normalizedProducts
+  return normalizedData
 }
 
 module.exports = {
@@ -196,3 +200,50 @@ module.exports = {
   deleteDuplicateKeysAndMakeSumInObjectArray,
   normalizeObjectData
 }
+
+// // Example:
+
+// import { Utils } from '@brutdecom/bdc_common'
+// // On a un array d'objet en data, que l'on veut normaliser suivant nos normes a nous
+// const data = [
+//   { ProductCode: 'SM', ProductID: 48723, DefaultName: 'Test 01', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+//   { ProductCode: 'SM', ProductID: 48700, DefaultName: 'Test 03', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+//   { ProductCode: 'SM', ProductID: 48710, DefaultName: 'Test 02', Price: 14, ImageID: 78654, Resa: '', Local: '' }
+// ]
+
+// // Premier cas d'utilisation => on veut simplement passer les keys en camelCase et ne garder que certaines keys
+// // Ce cas contient les params minimum, sinon cela ne fonctionnera pas
+// const res = await Utils.normalizeObjectData(data, {
+//   pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'] // les keys que l'on veut garder
+// })
+// // console.log(res) => 
+// // const res = [
+// //   { productCode: 'SM', productId: 48723, defaultName: 'Test 01', price: 14, imageId: 78654 },
+// //   { productCode: 'SM', productId: 48700, defaultName: 'Test 03', price: 14, imageId: 78654 },
+// //   { productCode: 'SM', productId: 48710, defaultName: 'Test 02', price: 14, imageId: 78654 }
+// // ]
+
+// // Second cas d'utilisation => même chose que le premier cas, mais maintenant on veux aussi ajouter des valeurs a chaque object dans l'array
+// const res = await Utils.normalizeObjectData(data, {
+//   pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'], // les keys que l'on veut garder
+//   setValues: [{ key: 'inStock', value: 20 }, { key: 'tax', value: 10 }], // les keys avec les values a ajouter. Attention, cela s'ajoutera a CHAQUE OBJECT DE LA MEME FACON
+// })
+// // console.log(res) => 
+// // const res = [
+// //   { productCode: 'SM', productId: 48723, defaultName: 'Test 01', price: 14, imageId: 78654, inStock: 20, tax: 10 },
+// //   { productCode: 'SM', productId: 48700, defaultName: 'Test 03', price: 14, imageId: 78654, inStock: 20, tax: 10 },
+// //   { productCode: 'SM', productId: 48710, defaultName: 'Test 02', price: 14, imageId: 78654, inStock: 20, tax: 10 }
+// // ]
+
+// // Troisième cas d'utilisation => même chose que les deux premier cas, mais cette fois on replace aussi une key a la place d'une autre, sans changer la valeur
+// const res = await Utils.normalizeObjectData(data, {
+//   pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'], // les keys que l'on veut garder
+//   setValues: [{ key: 'inStock', value: 20 }, { key: 'tax', value: 10 }], // les keys avec les values a ajouter. Attention, cela s'ajoutera a CHAQUE OBJECT DE LA MEME FACON
+//   replaceKeys: [{ oldKey: 'DefaultName', newKey: 'productName' }]
+// })
+// // console.log(res) => 
+// // const res = [
+// //   { productCode: 'SM', productId: 48723, productName: 'Test 01', price: 14, imageId: 78654, inStock: 20, tax: 10 },
+// //   { productCode: 'SM', productId: 48700, productName: 'Test 03', price: 14, imageId: 78654, inStock: 20, tax: 10 },
+// //   { productCode: 'SM', productId: 48710, productName: 'Test 02', price: 14, imageId: 78654, inStock: 20, tax: 10 }
+// // ]

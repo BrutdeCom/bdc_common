@@ -294,6 +294,46 @@ describe('validateStringRequestItems', function () {
             ]
 
             const res = await normalizeObjectData(data, {
+                pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'],
+                setValues: [{ key: 'inStock', value: 20 }],
+            })
+
+            expect(res).to.be.an('array').to.deep.equal([
+                {
+                    productId: 48723,
+                    defaultName: 'Test 01',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM',
+                    inStock: 20
+                },
+                {
+                    productId: 48700,
+                    defaultName: 'Test 03',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM',
+                    inStock: 20
+                },
+                {
+                    productId: 48710,
+                    defaultName: 'Test 02',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM',
+                    inStock: 20
+                }
+            ])
+        })
+
+        it('should be return array data normalized', async function () {
+            const data = [
+                { ProductCode: 'SM', ProductID: 48723, DefaultName: 'Test 01', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48700, DefaultName: 'Test 03', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48710, DefaultName: 'Test 02', Price: 14, ImageID: 78654, Resa: '', Local: '' }
+            ]
+
+            const res = await normalizeObjectData(data, {
                 pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode']
             })
 
@@ -320,5 +360,75 @@ describe('validateStringRequestItems', function () {
                     productCode: 'SM'
                 }
             ])
+        })
+
+        it('should be return array data normalized', async function () {
+            const data = [
+                { ProductCode: 'SM', ProductID: 48723, DefaultName: 'Test 01', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48700, DefaultName: 'Test 03', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48710, DefaultName: 'Test 02', Price: 14, ImageID: 78654, Resa: '', Local: '' }
+            ]
+
+            const res = await normalizeObjectData(data, {
+                pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'],
+                replaceKeys: [{ oldKey: 'DefaultName', newKey: 'productName' }]
+            })
+
+            expect(res).to.be.an('array').to.deep.equal([
+                {
+                    productId: 48723,
+                    productName: 'Test 01',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM'
+                },
+                {
+                    productId: 48700,
+                    productName: 'Test 03',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM'
+                },
+                {
+                    productId: 48710,
+                    productName: 'Test 02',
+                    price: 14,
+                    imageId: 78654,
+                    productCode: 'SM'
+                }
+            ])
+        })
+
+        it('should be return error message', async function () {
+            const data = [
+                { ProductCode: 'SM', ProductID: 48723, DefaultName: 'Test 01', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48700, DefaultName: 'Test 03', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+                { ProductCode: 'SM', ProductID: 48710, DefaultName: 'Test 02', Price: 14, ImageID: 78654, Resa: '', Local: '' }
+            ]
+
+            // data is not correct
+            expect(() => normalizeObjectData()).throws('data is not correct (nil, empty or is not an object)')
+            expect(() => normalizeObjectData([])).throws('data is not correct (nil, empty or is not an object)')
+            expect(() => normalizeObjectData(null)).throws('data is not correct (nil, empty or is not an object)')
+            expect(() => normalizeObjectData('test')).throws('data is not correct (nil, empty or is not an object)')
+
+            // config is not correct
+            expect(() => normalizeObjectData(data)).throws('config is not correct (nil, empty or is not an object)')
+            expect(() => normalizeObjectData(data, {})).throws('config is not correct (nil, empty or is not an object)')
+            expect(() => normalizeObjectData(data, null)).throws('config is not correct (nil, empty or is not an object)')
+            expect(() => normalizeObjectData(data, 'test')).throws('config is not correct (nil, empty or is not an object)')
+
+            // pickedKeys is not correct
+            expect(() => normalizeObjectData(data, { pickedKeys: null })).throws('pickedKeys is not correct (nil, empty or is not an object)')
+            expect(() => normalizeObjectData(data, { pickedKeys: 'test' })).throws('pickedKeys is not correct (nil, empty or is not an object)')
+            expect(() => normalizeObjectData(data, { pickedKeys: [] })).throws('pickedKeys is not correct (nil, empty or is not an object)')
+
+            // replace is not correct
+            expect(() => normalizeObjectData(data, { pickedKeys: ['ProductID'], replaceKeys: ['test'] })).throws('replace is incorrect')
+            expect(() => normalizeObjectData(data, { pickedKeys: ['ProductID'], replaceKeys: [{}] })).throws('replace is incorrect')
+
+            // values is not correct
+            expect(() => normalizeObjectData(data, { pickedKeys: ['ProductID'], setValues: ['test'] })).throws('values is incorrect')
+            expect(() => normalizeObjectData(data, { pickedKeys: ['ProductID'], setValues: [{}] })).throws('values is incorrect')
         })
     })
