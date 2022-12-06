@@ -1,4 +1,5 @@
-const { validateStringRequestItems, nextValue, deleteDuplicateKeysAndMakeSumInObjectArray } = require('../../src/utils/utils')
+const { validateStringRequestItems, nextValue, deleteDuplicateKeysAndMakeSumInObjectArray, verifyOrderExpirationTime } = require('../../src/utils/utils')
+const moment = require('moment')
 
 const expect = require('chai').expect
 
@@ -191,5 +192,46 @@ describe('validateStringRequestItems', function () {
             expect(() => deleteDuplicateKeysAndMakeSumInObjectArray(orderItems, { idKey: 'test', sumKey: null })).throws('sum key is nil or is not a string')
             expect(() => deleteDuplicateKeysAndMakeSumInObjectArray(orderItems, { idKey: 'test', sumKey: '' })).throws('sum key is nil or is not a string')
             expect(() => deleteDuplicateKeysAndMakeSumInObjectArray(orderItems, { idKey: 'test', sumKey: ['test'] })).throws('sum key is nil or is not a string')
+        })
+    })
+
+    describe('verifyOrderExpirationTime', function () {
+        it('should be a function', function () {
+            expect(verifyOrderExpirationTime).to.be.a('function')
+        })
+
+        it('should be return true', async function () {
+            const date = moment('28 novembre 2022 14:04').format()
+            const test = verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: 30 })
+            expect(test).eq(true)
+        })
+
+        it('should be return false', async function () {
+            const date = moment()
+            const test = verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: 30 })
+            expect(test).eq(false)
+        })
+
+        it('should be return an error message', async function () {
+            const date = moment()
+            // config is not correct
+            expect(() => verifyOrderExpirationTime(date, {})).throws('config is not correct (nil, empty or is not an object)')
+            expect(() => verifyOrderExpirationTime(date, ['test'])).throws('config is not correct (nil, empty or is not an object)')
+            expect(() => verifyOrderExpirationTime(date)).throws('config is not correct (nil, empty or is not an object)')
+            expect(() => verifyOrderExpirationTime(date, null)).throws('config is not correct (nil, empty or is not an object)')
+
+            // createdAt is null
+            expect(() => verifyOrderExpirationTime(null, { unit: 'minutes', timeToCompare: 30 })).throws('createdAt is undefined')
+
+            // unit is not correct
+            expect(() => verifyOrderExpirationTime(date, { unit: '', timeToCompare: 30 })).throws('unit is empty, nil or is not a string')
+            expect(() => verifyOrderExpirationTime(date, { unit: null, timeToCompare: 30 })).throws('unit is empty, nil or is not a string')
+            expect(() => verifyOrderExpirationTime(date, { unit: ['minutes'], timeToCompare: 30 })).throws('unit is empty, nil or is not a string')
+            expect(() => verifyOrderExpirationTime(date, { timeToCompare: 30 })).throws('unit is empty, nil or is not a string')
+
+            // timeToCompare is not correct
+            expect(() => verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: '30' })).throws('timeToCompare is nil or is not a number')
+            expect(() => verifyOrderExpirationTime(date, { unit: 'minutes' })).throws('timeToCompare is nil or is not a number')
+            expect(() => verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: null })).throws('timeToCompare is nil or is not a number')
         })
     })

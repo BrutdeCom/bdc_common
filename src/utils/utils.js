@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const moment = require('moment')
 
 const validateStringRequestItems = (payload) => {
     let isValid = true
@@ -87,7 +88,44 @@ const deleteDuplicateKeysAndMakeSumInObjectArray = (items, config = {}) => {
   return normalizedItems
 }
 
+/**
+ * verifyOrderExpirationTime. Compare dates for verify if order is expired.
+ * @param {date} createdAt - Contains creation date of order.
+ * @returns {any} .
+ */
+
+const verifyOrderExpirationTime = (createdAt, config = {}) => {
+  if (_.isEmpty(config) || !_.isPlainObject(config) || _.isNil(config)) {
+    throw new Error('config is not correct (nil, empty or is not an object)')
+  }
+  
+  const unit = _.get(config, 'unit')
+  const timeToCompare = _.get(config, 'timeToCompare')
+
+  if(_.isNil(createdAt)) {
+    throw new Error('createdAt is undefined')
+  }
+
+  if (_.isEmpty(unit) || !_.isString(unit) || _.isNil(unit)) {
+    throw new Error('unit is empty, nil or is not a string')
+  }
+
+  if (_.isNil(timeToCompare) || !_.isNumber(timeToCompare)) {
+    throw new Error('timeToCompare is nil or is not a number')
+  }
+
+  const dateNow = moment()
+  const dateNowMinutesDiffWithCreatedAt = dateNow.diff(createdAt, unit)
+
+  if(dateNowMinutesDiffWithCreatedAt > timeToCompare) {
+      return true
+  } else {
+      return false
+  }
+}
+
 module.exports = {
+  verifyOrderExpirationTime,
   validateStringRequestItems,
   nextValue,
   deleteDuplicateKeysAndMakeSumInObjectArray

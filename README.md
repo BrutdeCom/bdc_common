@@ -189,6 +189,7 @@ const myConst = Utils.myUtilsFunction()
 | :------------    | :-------------: | :-------------: | :-------------: |
 | `validateStringRequestItems(body)`    | Get if all values in request body is string | req.body parameters (object) | Return true if is ok, else return false |
 | `deleteDuplicateKeysAndMakeSumInObjectArray(items, config = {})`    | In array of object, delete duplicate key, and make sum values for this keys | items (array of object), config = { sumKey: key to use to sum, idKey: key to use to filter and delete duplicates }| Return an array of object with duplicates keys deleted and sum values for this keys (See tests for understanding) |
+| `verifyOrderExpirationTime(createdAt, config = {})`    | Verify if createdAt date is superior in timeToCompare with date now | createdAt: date to compare, config = { unit: time unit string (minutes, seconds, etc. See momentjs units in .diff method), timeToCompare: number. Time to compare, example: 30 for 30 minutes if unit is minutes } | Return true if is superior, else return false |
 
 
 ## <a name="enum">Enumerations</a>
