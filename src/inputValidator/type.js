@@ -1,7 +1,7 @@
 const Yup = require('yup')
 
 const type = Yup.object({
-    type: Yup.string().required('Le type de la question est requis.'),
+    type: Yup.string(),
 })
 
 module.exports = {

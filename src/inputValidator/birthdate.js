@@ -1,7 +1,7 @@
 const Yup = require('yup')
 
 const birthdate = Yup.object({
-  birthdate: Yup.date().required('La date de naissance est requise.'),
+  birthdate: Yup.date(),
 })
 
 module.exports = {

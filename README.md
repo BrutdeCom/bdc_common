@@ -1,18 +1,21 @@
 CONTENTS OF THIS PACKAGE
 ---------------------
 
- * Introduction
- * Installation
- * Regex
- * Validator
- * YUP Validator for Formik (InputValidator)
- * Utils
+ * [Introduction](#introduction)
+ * [Installation](#installation)
+ * [Regex](#regex)
+ * [Validator](#validator)
+ * [YUP Validator for Formik (InputValidator)](#yup)
+ * [Utils](#utils)
+ * [Enumerations](#enum)
 
-# Introduction
+# <a name="introduction">Introduction</a>
+
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com)
 
 This package is npm package in JavaScript for BrutDeCom projects.
 
-# Installation
+# <a name="installation">Installation</a>
 
 For install this package, run `npm i @brutdecom/bdc_common`
 
@@ -26,7 +29,7 @@ or
 
 `import { Regex } from @brutdecom/bdc_common`
 
-# Regex
+# <a name="regex">Regex</a>
 
 Example for use Regex with this package :
 
@@ -50,7 +53,7 @@ const myConst = Regex.password
 | city             | City (2 characters minimum, not number)    |
 | zip              | French zip code (5 numbers) |
 
-# Validator
+# <a name="validator">Validator</a>
 
 Validator part is utils for validate various data.
 Example for use Validator with this package :
@@ -86,7 +89,7 @@ const myConst = Validator.isValidString(14)
 | `isValidSiret('string')`    | Verify if value is valid siret | `String` siret parameters ('12345678998765') | Return `true` or `false` |
 | `isValidEnum('string', array)`    | Verify if value is valid enumeration | `String` value parameters ('test'), `array` parameters (Enum.MyEnum) | Return `true` or `false` |
 
-# YUP Validator for Formik (InputValidator)
+# <a name="yup">YUP Validator for Formik (InputValidator)</a>
 
 InputValidator part is utils for validate data in Formik form (validationSchemas parameter).
 Validate data, and display matches error in frontend (based on YUP package)
@@ -145,6 +148,10 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.birthCountry`    | birthCountry field validation |
 | `InputValidator.birthCounty`    | birthCounty field validation |
 | `InputValidator.birthCity`    | birthCity field validation |
+| `InputValidator.message`    | message (text area in contact form for example) field validation |
+| `InputValidator.subject`    | subject (object input in contact form for example) field validation |
+| `InputValidator.consent`    | consent (RGPD in contact form for example) field validation |
+
 
 ### For My Home Project (but it is possible to use it elsewhere)
 
@@ -161,7 +168,7 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.answerUnvalidateText`    | answerUnvalidateText field validation |
 | `InputValidator.answerValidateText`    | answerValidateText field validation |
 
-# Utils
+# <a name="utils">Utils</a>
 
 Example for use Utils with this package :
 
@@ -181,9 +188,133 @@ const myConst = Utils.myUtilsFunction()
 | Name       |     Description     | Parameters | return |
 | :------------    | :-------------: | :-------------: | :-------------: |
 | `validateStringRequestItems(body)`    | Get if all values in request body is string | req.body parameters (object) | Return true if is ok, else return false |
+| `deleteDuplicateKeysAndMakeSumInObjectArray(items, config = {})`    | In array of object, delete duplicate key, and make sum values for this keys | items (array of object), config = { sumKey: key to use to sum, idKey: key to use to filter and delete duplicates }| Return an array of object with duplicates keys deleted and sum values for this keys (See tests for understanding) |
+| `verifyOrderExpirationTime(createdAt, config = {})`    | Verify if createdAt date is superior in timeToCompare with date now | createdAt: date to compare, config = { unit: time unit string (minutes, seconds, etc. See momentjs units in .diff method), timeToCompare: number. Time to compare, example: 30 for 30 minutes if unit is minutes } | Return true if is superior, else return false |
 
 
-## Enum Part
+
+## <a name="enum">Enumerations</a>
+
+ :warning: :warning: PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION  :warning: :warning:
+
+### Create Enum
+
+```js
+import { Utils } from '@brutdecom/bdc_common'
+
+const CarBrand = {
+  RENAULT: 'renault', 
+  PEUGEOT_CITROEN: 'peugeot-citroen', 
+  FORD: 'ford'
+}
+
+export const CarBrandEnum = Utils.createEnum(CarBrand, 'CarBrand')
+```
+
+### Methods
+
+<details>
+  <summary>getValues()</summary>
+
+  ```js
+  CarBrand.getValues() // return ['renault', 'peugeot-citroen', 'ford']
+  ```
+  
+</details>
+
+<details>
+  <summary>next()</summary>
+
+  ```js
+  CarBrand.next() // return 'renault'
+  CarBrand.next('renault') // return 'peugeot-citroen'
+  CarBrand.next('ford') // return 'renault'
+  ```
+  
+</details>
+
+<details>
+  <summary>isValid()</summary>
+
+  ```js
+  CarBrand.isValid('renault') // return true
+  CarBrand.isValid('test') // return false
+  ```
+  
+</details>
+
+<details>
+  <summary>getCategories()</summary>
+
+  ```js
+  // Update CarBrand with categories for example
+  const CarBrand = {
+    frenchBrand: {
+      RENAULT: 'renault', 
+      PEUGEOT_CITROEN: 'peugeot-citroen', 
+    },
+    americanBrand: {
+      FORD: 'ford'
+    }
+  }
+
+  CarBrand.getCategories() // return ['frenchBrand', 'americanBrand']
+  ```
+  
+</details>
+
+<details>
+  <summary>getCategory()</summary>
+
+  ```js
+  // Update CarBrand with categories for example
+  const CarBrand = {
+    frenchBrand: {
+      RENAULT: 'renault', 
+      PEUGEOT_CITROEN: 'peugeot-citroen', 
+    },
+    americanBrand: {
+      FORD: 'ford'
+    }
+  }
+
+  CarBrand.getCategory('frenchBrand') // return ['renault', 'peugeot-citroen']
+  ```
+  
+</details>
+
+<details>
+  <summary>getIndex()</summary>
+
+  ```js
+  CarBrand.getIndex('renault') // return 0
+  CarBrand.getIndex('RENAULT') // return 0
+  ```
+  
+</details>
+
+<details>
+  <summary>getMetaData()</summary>
+
+  ```js
+  // Update CarBrand with categories for example
+  const CarBrand = {
+      RENAULT: 'renault', 
+      PEUGEOT_CITROEN: 'peugeot-citroen',
+      FORD: {
+        value: 'ford',
+        engine: '1.2',
+        test: false
+      }
+    }
+
+  CarBrand.getMetaData(CarBrand.FORD, 'engine') // return '1.2'
+  CarBrand.getMetaData(CarBrand.FORD, 'test') // return false
+  ``` 
+</details>
+
+<details>
+  <summary> :warning: OLD VERSION</summary>
 
 ### Examples for use enum functions
 
@@ -251,8 +382,8 @@ const { Utils } = require('@brutdecom/bdc_common')
 
 // or for REACT
 
-import { Enum } from '@brut2com/myhome-common')
-import { Utils } from '@brutdecom/bdc_common')
+import { Enum } from '@brut2com/myhome-common'
+import { Utils } from '@brutdecom/bdc_common'
 
 
 const enumValues = Utils.getEnumValues(Enum.HabitatThemeQuestionType()) // Look enum example Enum.HabitatThemeQuestionType() above for details
@@ -371,4 +502,5 @@ const subTypesByParent = Utils.getEnumSubTypeByParent(Enum.HabitatThemeQuestionT
 //     }
 // ])
 ```
+</details>
 </details>

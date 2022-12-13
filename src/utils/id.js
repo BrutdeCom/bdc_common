@@ -29,7 +29,6 @@ const isValid = (id) => {
   return true
 }
 
-// Ensure that the generation of the id is consistent throughout the code
 const createId = () => {
   return uuid()
 }
