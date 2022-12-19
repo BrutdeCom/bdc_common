@@ -219,6 +219,12 @@ describe('validateStringRequestItems', function () {
             expect(test).eq(false)
         })
 
+        it('should be return false with new Date() (unit minutes)', async function () {
+            const date = new Date()
+            const test = verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: 30 })
+            expect(test).eq(false)
+        })
+
         it('should be return false', async function () {
             const date = moment()
             const test = verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: 30 })
