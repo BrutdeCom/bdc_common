@@ -207,6 +207,18 @@ describe('validateStringRequestItems', function () {
             expect(test).eq(true)
         })
 
+        it('should be return true with days', async function () {
+            const date = moment('10 novembre 2022 14:04').format()
+            const test = verifyOrderExpirationTime(date, { unit: 'days', timeToCompare: 30 })
+            expect(test).eq(true)
+        })
+
+        it('should be return false with days', async function () {
+            const date = moment()
+            const test = verifyOrderExpirationTime(date, { unit: 'days', timeToCompare: 30 })
+            expect(test).eq(false)
+        })
+
         it('should be return false', async function () {
             const date = moment()
             const test = verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: 30 })
