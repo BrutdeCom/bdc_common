@@ -291,6 +291,7 @@ const myConst = Utils.myUtilsFunction()
     setValues: [{ key: 'inStock', value: 20 }, { key: 'tax', value: 10 }], // les keys avec les values a ajouter. Attention, cela s'ajoutera a CHAQUE OBJECT DE LA MEME FACON
   })
   // console.log(res) => 
+  
   // const res = [
   //   { productCode: 'SM', productId: 48723, defaultName: 'Test 01', price: 14, imageId: 78654, inStock: 20, tax: 10 },
   //   { productCode: 'SM', productId: 48700, defaultName: 'Test 03', price: 14, imageId: 78654, inStock: 20, tax: 10 },
