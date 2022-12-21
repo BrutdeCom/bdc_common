@@ -185,13 +185,77 @@ const myConst = Utils.myUtilsFunction()
 // return ...
 ```
 
-| Name       |     Description     | Parameters | return |
-| :------------    | :-------------: | :-------------: | :-------------: |
-| `validateStringRequestItems(body)`    | Get if all values in request body is string | req.body parameters (object) | Return true if is ok, else return false |
-| `deleteDuplicateKeysAndMakeSumInObjectArray(items, config = {})`    | In array of object, delete duplicate key, and make sum values for this keys | items (array of object), config = { sumKey: key to use to sum, idKey: key to use to filter and delete duplicates }| Return an array of object with duplicates keys deleted and sum values for this keys (See tests for understanding) |
-| `verifyOrderExpirationTime(createdAt, config = {})`    | Verify if createdAt date is superior in timeToCompare with date now | createdAt: date to compare, config = { unit: time unit string (minutes, seconds, etc. See momentjs units in .diff method), timeToCompare: number. Time to compare, example: 30 for 30 minutes if unit is minutes } | Return true if is superior, else return false |
+<details>
+  <summary>validateStringRequestItems()</summary>
 
+  ```js
+  const verifyIfRequestItemsIsString = Utils.validateStringRequestItems({
+          value1: 'test1',
+          value2: 'test2',
+          value3: 12
+  })
+  // return false, because one value is not a string
 
+    const verifyIfRequestItemsIsString = Utils.validateStringRequestItems({
+          value1: 'test1',
+          value2: 'test2'
+  })
+  // return true, because all values is string
+  ```
+</details>
+
+<details>
+  <summary>deleteDuplicateKeysAndMakeSumInObjectArray()</summary>
+
+  ```js
+  const orderItems = [
+        { _id: '123', productId: '100', productName: 'Item 01', quantity: 10 },
+        { _id: '234', productId: '200', productName: 'Item 02', quantity: 6 },
+        { _id: '123', productId: '100', productName: 'Item 01', quantity: 2 },
+        { _id: '456', productId: '400', productName: 'Item 04', quantity: 23 },
+        { _id: '123', productId: '100', productName: 'Item 01', quantity: 1 },
+        { _id: '456', productId: '400', productName: 'Item 04', quantity: 9 }
+  ]
+  const verifyIfRequestItemsIsString = Utils.deleteDuplicateKeysAndMakeSumInObjectArray(orderItems, {
+        sumKey: 'quantity',
+        idKey: '_id'
+  })
+
+  // Delete items with duplicate "_id", and make sum with quantity keys.
+  // verifyIfRequestItemsIsString === [
+  //               {
+  //                   _id: '123',
+  //                   productId: '100',
+  //                   productName: 'Item 01',
+  //                   quantity: 13
+  //               },
+  //               {
+  //                   _id: '234',
+  //                   productId: '200',
+  //                   productName: 'Item 02',
+  //                   quantity: 6
+  //               },
+  //               {
+  //                   _id: '456',
+  //                   productId: '400',
+  //                   productName: 'Item 04',
+  //                   quantity: 32
+  //               }
+  //           ]
+  ```
+</details>
+
+<details>
+  <summary>verifyOrderExpirationTime()</summary>
+
+  ```js
+  const verifyIfExpired = Utils.verifyOrderExpirationTime(date, { 
+      unit: 'minutes', // or hours, days etc. See momentjs doc for units
+      timeToCompare: 30
+    })
+    // return true if date is expired, false if not expired
+  ```
+</details>
 
 ## <a name="enum">Enumerations</a>
 
