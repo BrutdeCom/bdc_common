@@ -193,12 +193,40 @@ const normalizeObjectData = (data, config = {}) => {
   return normalizedData
 }
 
+/**
+ * extractNumberInString. Extract first number in string.
+ * @param {date} createdAt - Contains string.
+ * @returns {any} .
+ */
+
+// TODO: Replace in BDC common
+// WARNING: Return only first number in string
+const extractNumberInString = (string) => {
+  if (_.isNil(string)) {
+      throw new Error('string is undefined')
+  }
+
+  if (!_.isString(string)) {
+      throw new Error('string is not a string')
+  }
+
+  const extractMinutesNumberInString = string.match(/(\d+)/)
+
+  if(_.isNil(extractMinutesNumberInString)) {
+      throw new Error('not number in string')
+  }
+
+  // @ts-ignore
+  return parseInt(extractMinutesNumberInString[0])
+}
+
 module.exports = {
   verifyOrderExpirationTime,
   validateStringRequestItems,
   nextValue,
   deleteDuplicateKeysAndMakeSumInObjectArray,
-  normalizeObjectData
+  normalizeObjectData,
+  extractNumberInString
 }
 
 // // Example:

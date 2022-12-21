@@ -1,6 +1,6 @@
 const moment = require('moment')
 
-const { validateStringRequestItems, nextValue, deleteDuplicateKeysAndMakeSumInObjectArray, verifyOrderExpirationTime, normalizeObjectData } = require('../../src/utils/utils')
+const { validateStringRequestItems, nextValue, deleteDuplicateKeysAndMakeSumInObjectArray, verifyOrderExpirationTime, normalizeObjectData, extractNumberInString } = require('../../src/utils/utils')
 
 const expect = require('chai').expect
 
@@ -252,6 +252,34 @@ describe('validateStringRequestItems', function () {
             expect(() => verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: '30' })).throws('timeToCompare is nil or is not a number')
             expect(() => verifyOrderExpirationTime(date, { unit: 'minutes' })).throws('timeToCompare is nil or is not a number')
             expect(() => verifyOrderExpirationTime(date, { unit: 'minutes', timeToCompare: null })).throws('timeToCompare is nil or is not a number')
+        })
+    })
+
+    describe('extractNumberInString', function () {
+        it('should be a function', function () {
+            expect(extractNumberInString).to.be.a('function')
+        })
+
+        it('should be return a number', async function () {
+            expect(extractNumberInString('30')).eq(30)
+            expect(extractNumberInString('dfgdfg30')).eq(30)
+            expect(extractNumberInString('30dfgdfg')).eq(30)
+            expect(extractNumberInString('df dfgdfg fg 30 fgd gf')).eq(30)
+            expect(extractNumberInString('fgd30dgdfg')).eq(30)
+            expect(extractNumberInString('30 gfdg fdg fd')).eq(30)
+        })
+
+        it('should be return an error message', async function () {
+            // @ts-ignore
+            expect(() => extractNumberInString(30)).throws('string is not a string')
+            // @ts-ignore
+            expect(() => extractNumberInString([])).throws('string is not a string')
+            // @ts-ignore
+            expect(() => extractNumberInString({ string: 'string' })).throws('string is not a string')
+            // @ts-ignore
+            expect(() => extractNumberInString()).throws('string is undefined')
+            // @ts-ignore
+            expect(() => extractNumberInString(null)).throws('string is undefined')
         })
     })
 
