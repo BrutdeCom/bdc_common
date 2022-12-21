@@ -257,6 +257,61 @@ const myConst = Utils.myUtilsFunction()
   ```
 </details>
 
+<details>
+  <summary>normalizeObjectData()</summary>
+
+  ```js
+  const verifyIfExpired = Utils.normalizeObjectData(date, { 
+      unit: 'minutes', // or hours, days etc. See momentjs doc for units
+      timeToCompare: 30
+    })
+
+  // On a un array d'objet en data, que l'on veut normaliser suivant nos normes a nous
+  const data = [
+    { ProductCode: 'SM', ProductID: 48723, DefaultName: 'Test 01', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+    { ProductCode: 'SM', ProductID: 48700, DefaultName: 'Test 03', Price: 14, ImageID: 78654, Resa: '', Local: '' },
+    { ProductCode: 'SM', ProductID: 48710, DefaultName: 'Test 02', Price: 14, ImageID: 78654, Resa: '', Local: '' }
+ ]
+
+  // Premier cas d'utilisation => on veut simplement passer les keys en camelCase et ne garder que certaines keys
+  // Ce cas contient les params minimum, sinon cela ne fonctionnera pas
+  const res = await Utils.normalizeObjectData(data, {
+    pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'] // les keys que l'on veut garder
+  })
+  // console.log(res) => 
+  // const res = [
+  //   { productCode: 'SM', productId: 48723, defaultName: 'Test 01', price: 14, imageId: 78654 },
+  //   { productCode: 'SM', productId: 48700, defaultName: 'Test 03', price: 14, imageId: 78654 },
+  //   { productCode: 'SM', productId: 48710, defaultName: 'Test 02', price: 14, imageId: 78654 }
+  // ]
+
+  // Second cas d'utilisation => même chose que le premier cas, mais maintenant on veux aussi ajouter des valeurs a chaque object dans l'array
+  const res = await Utils.normalizeObjectData(data, {
+    pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'], // les keys que l'on veut garder
+    setValues: [{ key: 'inStock', value: 20 }, { key: 'tax', value: 10 }], // les keys avec les values a ajouter. Attention, cela s'ajoutera a CHAQUE OBJECT DE LA MEME FACON
+  })
+  // console.log(res) => 
+  // const res = [
+  //   { productCode: 'SM', productId: 48723, defaultName: 'Test 01', price: 14, imageId: 78654, inStock: 20, tax: 10 },
+  //   { productCode: 'SM', productId: 48700, defaultName: 'Test 03', price: 14, imageId: 78654, inStock: 20, tax: 10 },
+  //   { productCode: 'SM', productId: 48710, defaultName: 'Test 02', price: 14, imageId: 78654, inStock: 20, tax: 10 }
+  // ]
+
+  // Troisième cas d'utilisation => même chose que les deux premier cas, mais cette fois on replace aussi une key a la place d'une autre, sans changer la valeur
+  const res = await Utils.normalizeObjectData(data, {
+    pickedKeys: ['ProductID', 'DefaultName', 'Price', 'ImageID', 'ProductCode'], // les keys que l'on veut garder
+    setValues: [{ key: 'inStock', value: 20 }, { key: 'tax', value: 10 }], // les keys avec les values a ajouter. Attention, cela s'ajoutera a CHAQUE OBJECT DE LA MEME FACON
+    replaceKeys: [{ oldKey: 'DefaultName', newKey: 'productName' }]
+  })
+    // console.log(res) => 
+    // const res = [
+    //   { productCode: 'SM', productId: 48723, productName: 'Test 01', price: 14, imageId: 78654, inStock: 20, tax: 10 },
+    //   { productCode: 'SM', productId: 48700, productName: 'Test 03', price: 14, imageId: 78654, inStock: 20, tax: 10 },
+    //   { productCode: 'SM', productId: 48710, productName: 'Test 02', price: 14, imageId: 78654, inStock: 20, tax: 10 }
+    // ]
+  ```
+</details>
+
 ## <a name="enum">Enumerations</a>
 
  :warning: :warning: PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION  :warning: :warning:
