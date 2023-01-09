@@ -38,8 +38,10 @@ const { file } = require('./file')
 const { message } = require('./message')
 const { subject } = require('./subject')
 const { consent } = require('./consent')
+const { oldPassword } = require('./oldPassword')
 
 module.exports = {
+  oldPassword,
   consent,
   subject,
   message,
