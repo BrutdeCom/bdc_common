@@ -315,7 +315,7 @@ const myConst = Utils.myUtilsFunction()
 
 ## <a name="enum">Enumerations</a>
 
- :warning: :warning: PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION  :warning: :warning:
+ :warning: :warning: PLEASE USE NEW ENUM VERSION AND NOT OLD VERSION (IS DEPRECATED)  :warning: :warning:
 
 ### Create Enum
 
@@ -434,7 +434,7 @@ export const CarBrandEnum = Utils.createEnum(CarBrand, 'CarBrand')
 </details>
 
 <details>
-  <summary> :warning: OLD VERSION</summary>
+  <summary> :warning: OLD VERSION (DEPRECATED)</summary>
 
 ### Examples for use enum functions
 
