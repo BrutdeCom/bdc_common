@@ -39,8 +39,24 @@ const { message } = require('./message')
 const { subject } = require('./subject')
 const { consent } = require('./consent')
 const { oldPassword } = require('./oldPassword')
+const { notes } = require('./notes')
+const { phoneOne } = require('./phoneOne')
+const { phoneTwo } = require('./phoneTwo')
+const { instagram } = require('./instagram')
+const { facebook } = require('./facebook')
+const { website } = require('./website')
+const { linkedin } = require('./linkedin')
+const { fonction } = require('./fonction')
 
 module.exports = {
+  fonction,
+  linkedin,
+  website,
+  facebook,
+  instagram,
+  phoneOne,
+  phoneTwo,
+  notes,
   oldPassword,
   consent,
   subject,
