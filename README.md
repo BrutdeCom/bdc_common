@@ -151,7 +151,14 @@ const validationSchema = FormValidator.mergedYupSchemas(InputValidator.email, In
 | `InputValidator.message`    | message (text area in contact form for example) field validation |
 | `InputValidator.subject`    | subject (object input in contact form for example) field validation |
 | `InputValidator.consent`    | consent (RGPD in contact form for example) field validation |
-
+| `InputValidator.notes`    | notes (text area) field validation |
+| `InputValidator.phoneOne`    | Phone field validation for multiple phone fields in form |
+| `InputValidator.phoneTwo`    | Phone field validation for multiple phone fields in form |
+| `InputValidator.instagram`    | Instagram field validation |
+| `InputValidator.facebook`    | Facebook field validation |
+| `InputValidator.website`    | Website field validation |
+| `InputValidator.linkedin`    | Linkedin field validation |
+| `InputValidator.fonction`    | Fonction field validation |
 
 ### For My Home Project (but it is possible to use it elsewhere)
 
