@@ -48,8 +48,10 @@ const { website } = require('./website')
 const { linkedin } = require('./linkedin')
 const { fonction } = require('./fonction')
 const { url } = require('./url')
+const { agenda } = require('./agenda')
 
 module.exports = {
+  agenda,
   url,
   fonction,
   linkedin,
